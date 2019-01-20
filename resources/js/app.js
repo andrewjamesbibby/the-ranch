@@ -6,16 +6,24 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+import store from './store';
+
+
+
 import App from './views/App'
 import Home from './views/Home'
-import Readers from './views/Readers'
 
+import Readers from './views/Readers'
+import ListReaders from './views/readers/list'
 import FindReader from './views/readers/find'
 import CreateReader from './views/readers/create'
 import UpdateReader from './views/readers/update'
 import DeleteReader from './views/readers/delete'
 
 import Editions from './views/Editions'
+import ListEditions from './views/editions/list'
+
+
 import Permissions from './views/Permissions'
 import ReaderLogins from './views/ReaderLogins'
 import Publications from './views/Publications'
@@ -31,8 +39,15 @@ const router = new VueRouter({
     linkActiveClass: 'is-active',
     routes: [
         { path: '/', name: 'home', component: Home },
-        { path: '/readers', name: 'readers', component: Readers,
+        {
+            path: '/readers',
+            name: 'readers',
+            component: Readers,
             children: [
+                {
+                    path: 'list',
+                    component: ListReaders
+                },
                 {
                     path: 'find',
                     component: FindReader
@@ -51,7 +66,16 @@ const router = new VueRouter({
                 },
             ]
         },
-        { path: '/editions', name: 'editions', component: Editions },
+        {
+            path: '/editions',
+            name: 'editions',
+            component: Editions,
+            children: [
+                {
+                    path: 'list',
+                    component: ListEditions
+                },
+            ] },
         { path: '/permissions', name: 'permissions', component: Permissions },
         { path: '/reader-logins', name: 'reader-logins', component: ReaderLogins },
         { path: '/publications', name: 'publications', component: Publications },
@@ -64,8 +88,11 @@ const router = new VueRouter({
     ],
 });
 
+
+
 const app = new Vue({
     el: '#app',
     components: { App },
     router,
+    store,
 });

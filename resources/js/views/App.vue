@@ -9,11 +9,11 @@
             <aside class="column is-3 aside hero is-fullheight">
                 <div>
                     <div class="main">
-                        <router-link to="/readers/find" class="item">
+                        <router-link to="/readers/list" class="item">
                             <span class="icon"><i class="fa fa-book-reader"></i></span><span class="name">Readers</span>
                         </router-link>
 
-                        <router-link :to="{ name: 'editions' }" class="item">
+                        <router-link to="/editions/list" class="item">
                             <span class="icon"><i class="fa fa-book-open"></i></span><span class="name">Editions</span>
                         </router-link>
 
@@ -57,14 +57,20 @@
                 </div>
             </aside>
 
-            <div class="column is-4 messages hero is-fullheight" id="message-feed">
+            <div class="column is-4 messages hero is-fullheight">
                 <router-view></router-view>
             </div>
 
-            <div class="column is-5 message hero is-fullheight" id="message-pane">
+            <div class="column is-5 message hero is-fullheight">
 
-                // xml here !
+                <p>Request Info</p>
+                <p>Raw Request</p>
+                <p>XML Body</p>
 
+                <span class="tag is-medium is-success">
+                  200
+                </span>
+                <pre>{{ lastRequest }}</pre>
             </div>
 
         </div>
@@ -72,5 +78,16 @@
     </div>
 </template>
 <script>
-    export default {}
+    export default {
+        data : function(){
+            return {
+
+            }
+        },
+        computed : {
+            lastRequest : function() {
+                return this.$store.state.lastRequest;
+            }
+        }
+    }
 </script>

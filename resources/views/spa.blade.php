@@ -211,23 +211,7 @@
             display: inline-block;
             padding: 0 20px;
         }
-        .avatar img {
-            width: 40px;
-            border-radius: 50px;
-            border: 2px solid #999;
-            padding: 2px;
-        }
-        .address .name {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .address .email {
-            font-weight: bold;
-            color: #B6C7D1;
-        }
-        .card.active {
-            background-color:#F5F5F5;
-        }
+
 
     </style>
 </head>

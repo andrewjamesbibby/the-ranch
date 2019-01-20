@@ -1,17 +1,11 @@
 <template>
     <div>
         <div class="box">
-            <strong>Find Reader</strong>
-            <p>Find a publisher reader by ID.</p>
+            <strong>List Readers</strong>
+            <p>Find and display all publisher readers</p>
         </div>
 
         <form>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
-                </div>
-            </div>
-
             <div class="field">
                 <p class="control">
                     <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
@@ -37,7 +31,7 @@
 
                 self.loading = true;
 
-                axios.get('/api/readers/' + self.readerId)
+                axios.get('/api/readers')
                 .then(function(response) {
                     self.$store.commit('setResponse' , response.data);
                 })

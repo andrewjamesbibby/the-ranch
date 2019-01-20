@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::get('/readers', function (Request $request) {
-    return 'dsbnmhgf';
-});
+Route::get('/readers', 'ReadersController@getReaders');
+Route::get('/readers/{id}', 'ReadersController@getReader');
+Route::post('/readers', 'ReadersController@createReader');
+Route::put('/readers/{id}', 'ReadersController@updateReader');
+Route::delete('/readers/{id}', 'ReadersController@deleteReader');
