@@ -1,19 +1,21 @@
 <template>
     <div>
+        <div class="loading-window" v-if="loading"></div>
+
         <nav class="navbar has-shadow">
 
         </nav>
 
         <div class="columns">
 
-            <aside class="column is-3 aside hero is-fullheight">
+            <aside class="column is-2 aside hero is-fullheight">
                 <div>
                     <div class="main">
-                        <router-link to="/readers/list" class="item">
+                        <router-link to="/readers" class="item">
                             <span class="icon"><i class="fa fa-book-reader"></i></span><span class="name">Readers</span>
                         </router-link>
 
-                        <router-link to="/editions/list" class="item">
+                        <router-link to="/editions" class="item">
                             <span class="icon"><i class="fa fa-book-open"></i></span><span class="name">Editions</span>
                         </router-link>
 
@@ -57,20 +59,36 @@
                 </div>
             </aside>
 
-            <div class="column is-4 messages hero is-fullheight">
+            <div id ="builder" class="column is-5 is-fullheight">
                 <router-view></router-view>
             </div>
 
-            <div class="column is-5 message hero is-fullheight">
+            <div id="response" class="column is-5">
 
-                <p>Request Info</p>
-                <p>Raw Request</p>
-                <p>XML Body</p>
+                <div class="card mb-10">
+                    <header class="card-header">
+                        <p class="card-header-title">Request</p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            // request variables and other stuff in here.
+                            // If can get raw request even better!
+                        </div>
+                    </div>
+                </div>
 
-                <span class="tag is-medium is-success">
-                  200
-                </span>
-                <pre>{{ lastRequest }}</pre>
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">Response</p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            <span class="tag is-medium is-success"> 200 </span>
+                            <pre>{{ lastRequest }}</pre>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -85,6 +103,9 @@
             }
         },
         computed : {
+            loading : function () {
+                return this.$store.state.loading;
+            },
             lastRequest : function() {
                 return this.$store.state.lastRequest;
             }

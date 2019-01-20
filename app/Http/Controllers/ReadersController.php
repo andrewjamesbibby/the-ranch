@@ -8,27 +8,25 @@ use Illuminate\Http\Request;
 class ReadersController extends Controller
 {
 
-    public function getReader(Request $request){
-
-        $publisher = new Publisher(config('yudu.key'), config('yudu.secret'), [ 'debug' => false ]);
+    public function getReader(Publisher $publisher, Request $request){
 
         $results = $publisher->getReader($request->id);
 
-        return $results->xmlString();
+        return [
+            'request'    => 'hopefully raw request here',
+            'statusCode' => $results->statusCode(),
+            'body'       => $results->xmlString(),
+        ];
     }
 
-    public function getReaders(Request $request){
-
-        $publisher = new Publisher(config('yudu.key'), config('yudu.secret'), [ 'debug' => false ]);
+    public function getReaders(Publisher $publisher, Request $request){
 
         $results = $publisher->getReaders();
 
         return $results->xmlString();
     }
 
-    public function createReader(Request $request){
-
-        $publisher = new Publisher(config('yudu.key'), config('yudu.secret'), [ 'debug' => false ]);
+    public function createReader(Publisher $publisher, Request $request){
 
         $results = $publisher->createReader([
             'username'      => $request->username,
@@ -41,9 +39,7 @@ class ReadersController extends Controller
         return $results->xmlString();
     }
 
-    public function updateReader(Request $request, $readerId){
-
-        $publisher = new Publisher(config('yudu.key'), config('yudu.secret'), [ 'debug' => false ]);
+    public function updateReader(Publisher $publisher, Request $request, $readerId){
 
         $results = $publisher->updateReader($readerId , [
             'username'      => $request->username,
@@ -56,9 +52,7 @@ class ReadersController extends Controller
         return $results->xmlString();
     }
 
-    public function deleteReader(Request $request, $readerId){
-
-        $publisher = new Publisher(config('yudu.key'), config('yudu.secret'), [ 'debug' => false ]);
+    public function deleteReader(Publisher $publisher, Request $request, $readerId){
 
         $results = $publisher->deleteReader($readerId);
 

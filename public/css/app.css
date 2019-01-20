@@ -1,5 +1,123 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.navbar-laravel {
+@import url(https://fonts.googleapis.com/css?family=Nunito);html,
+body {
+  font-family: "Open Sans", serif;
+  font-size: 14px;
+  line-height: 1.5;
+  height: 100%;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.nav.menu {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.nav.menu .nav-item .icon-btn {
+  border: 3px solid #B7C6C9;
+  border-radius: 90px;
+  padding: 5px 7px;
+  color: #B7C6C9;
+}
+
+.nav.menu .nav-item.is-active .icon-btn {
+  color: #2EB398;
+  border: 3px solid #2EB398;
+}
+
+.nav.menu .nav-item .icon-btn .fa {
+  font-size: 20px;
+  color: #B7C6C9;
+}
+
+.nav.menu .nav-item.is-active .icon-btn .fa {
+  color: #2EB398;
+}
+
+.aside {
+  display: block;
+  background-color: #F9F9F9;
+  border-right: 1px solid #DEDEDE;
+}
+
+#builder {
+  border-right: 1px solid #DEDEDE;
+  padding: 40px 20px;
+}
+
+#response {
+  display: block;
+  background-color: #fff;
+  padding: 40px 25px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.loading-window {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  z-index: 1001;
+}
+
+#response .meta {
+  border: solid 1px blue;
+}
+
+#response .body {
+  border: solid 1px red;
+}
+
+.aside .main {
+  padding: 40px;
+  color: #6F7B7E;
+}
+
+.aside .title {
+  color: #6F7B7E;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.aside .main .item {
+  display: block;
+  padding: 10px 0;
+  color: #6F7B7E;
+}
+
+.aside .main .item.is-active {
+  background-color: #F1F1F1;
+  margin: 0 -50px;
+  padding-left: 50px;
+}
+
+.aside .main .item.is-active .icon {
+  color: #00b92b;
+}
+
+.aside .main .item:active,
+.aside .main .item:hover {
+  background-color: #F2F2F2;
+  margin: 0 -50px;
+  padding-left: 50px;
+}
+
+.aside .main .icon {
+  font-size: 15px;
+  padding-right: 22px;
+  color: #A0A0A0;
+}
+
+.aside .main .name {
+  font-size: 13px;
+  color: #5D5D5D;
+  font-weight: 500;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
 }
 

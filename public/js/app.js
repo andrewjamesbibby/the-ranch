@@ -2861,11 +2861,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
   },
   computed: {
+    loading: function loading() {
+      return this.$store.state.loading;
+    },
     lastRequest: function lastRequest() {
       return this.$store.state.lastRequest;
     }
@@ -3099,25 +3120,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
     return {
-      readerId: null,
-      loading: false
+      readerId: null
     };
+  },
+  computed: {
+    loading: function loading() {
+      return this.$store.state.loading;
+    }
   },
   methods: {
     submit: function submit() {
       var self = this;
-      self.loading = true;
+      self.$store.commit('startLoading');
       axios.get('/api/readers/' + self.readerId).then(function (response) {
         self.$store.commit('setResponse', response.data);
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
-        self.loading = false;
+        self.$store.commit('stopLoading');
       });
     }
   }
@@ -3152,24 +3176,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
     return {
-      readerId: null,
-      loading: false
+      readerId: null
     };
+  },
+  computed: {
+    loading: function loading() {
+      return this.$store.state.loading;
+    }
   },
   methods: {
     submit: function submit() {
       var self = this;
-      self.loading = true;
+      self.$store.commit('startLoading');
       axios.get('/api/readers').then(function (response) {
         self.$store.commit('setResponse', response.data);
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
-        self.loading = false;
+        self.$store.commit('stopLoading');
       });
     }
   }
@@ -20896,10 +20930,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm.loading ? _c("div", { staticClass: "loading-window" }) : _vm._e(),
+    _vm._v(" "),
     _c("nav", { staticClass: "navbar has-shadow" }),
     _vm._v(" "),
     _c("div", { staticClass: "columns" }, [
-      _c("aside", { staticClass: "column is-3 aside hero is-fullheight" }, [
+      _c("aside", { staticClass: "column is-2 aside hero is-fullheight" }, [
         _c("div", [
           _c(
             "div",
@@ -20907,7 +20943,7 @@ var render = function() {
             [
               _c(
                 "router-link",
-                { staticClass: "item", attrs: { to: "/readers/list" } },
+                { staticClass: "item", attrs: { to: "/readers" } },
                 [
                   _c("span", { staticClass: "icon" }, [
                     _c("i", { staticClass: "fa fa-book-reader" })
@@ -20918,7 +20954,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "router-link",
-                { staticClass: "item", attrs: { to: "/editions/list" } },
+                { staticClass: "item", attrs: { to: "/editions" } },
                 [
                   _c("span", { staticClass: "icon" }, [
                     _c("i", { staticClass: "fa fa-book-open" })
@@ -21057,28 +21093,59 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "column is-4 messages hero is-fullheight" },
+        { staticClass: "column is-5 is-fullheight", attrs: { id: "builder" } },
         [_c("router-view")],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "column is-5 message hero is-fullheight" }, [
-        _c("p", [_vm._v("Request Info")]),
+      _c("div", { staticClass: "column is-5", attrs: { id: "response" } }, [
+        _vm._m(0),
         _vm._v(" "),
-        _c("p", [_vm._v("Raw Request")]),
-        _vm._v(" "),
-        _c("p", [_vm._v("XML Body")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "tag is-medium is-success" }, [
-          _vm._v("\n              200\n            ")
-        ]),
-        _vm._v(" "),
-        _c("pre", [_vm._v(_vm._s(_vm.lastRequest))])
+        _c("div", { staticClass: "card" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "content" }, [
+              _c("span", { staticClass: "tag is-medium is-success" }, [
+                _vm._v(" 200 ")
+              ]),
+              _vm._v(" "),
+              _c("pre", [_vm._v(_vm._s(_vm.lastRequest))])
+            ])
+          ])
+        ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-10" }, [
+      _c("header", { staticClass: "card-header" }, [
+        _c("p", { staticClass: "card-header-title" }, [_vm._v("Request")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm._v(
+            "\n                        // request variables and other stuff in here.\n                        // If can get raw request even better!\n                    "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "card-header-title" }, [_vm._v("Response")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -21298,23 +21365,23 @@ var render = function() {
           "ul",
           [
             _c("router-link", { attrs: { tag: "li", to: "/readers/list" } }, [
-              _c("a", { attrs: { href: "" } }, [_vm._v("List")])
+              _c("a", { attrs: { href: "" } }, [_vm._v("LIST")])
             ]),
             _vm._v(" "),
             _c("router-link", { attrs: { tag: "li", to: "/readers/find" } }, [
-              _c("a", { attrs: { href: "" } }, [_vm._v("Find")])
+              _c("a", { attrs: { href: "" } }, [_vm._v("FIND")])
             ]),
             _vm._v(" "),
             _c("router-link", { attrs: { tag: "li", to: "/readers/create" } }, [
-              _c("a", { attrs: { href: "" } }, [_vm._v("Create")])
+              _c("a", { attrs: { href: "" } }, [_vm._v("CREATE")])
             ]),
             _vm._v(" "),
             _c("router-link", { attrs: { tag: "li", to: "/readers/update" } }, [
-              _c("a", { attrs: { href: "" } }, [_vm._v("Update")])
+              _c("a", { attrs: { href: "" } }, [_vm._v("UPDATE")])
             ]),
             _vm._v(" "),
             _c("router-link", { attrs: { tag: "li", to: "/readers/delete" } }, [
-              _c("a", { attrs: { href: "" } }, [_vm._v("Delete")])
+              _c("a", { attrs: { href: "" } }, [_vm._v("DELETE")])
             ])
           ],
           1
@@ -21882,10 +21949,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("strong", [_vm._v("List Readers")]),
+    return _c("div", { staticClass: "card" }, [
+      _c("header", { staticClass: "card-header" }, [
+        _c("p", { staticClass: "card-header-title" }, [_vm._v("List Readers")])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Find and display all publisher readers")])
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm._v(
+            "\n                Find and display all publisher readers\n            "
+          )
+        ])
+      ])
     ])
   }
 ]
@@ -36059,6 +36134,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'readers',
     component: _views_Readers__WEBPACK_IMPORTED_MODULE_5__["default"],
     children: [{
+      path: '',
+      component: _views_readers_list__WEBPACK_IMPORTED_MODULE_6__["default"]
+    }, {
       path: 'list',
       component: _views_readers_list__WEBPACK_IMPORTED_MODULE_6__["default"]
     }, {
@@ -36193,10 +36271,17 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(Vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new Vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    loading: false,
     lastRequest: ''
   },
   getters: {},
   mutations: {
+    startLoading: function startLoading() {
+      this.state.loading = true;
+    },
+    stopLoading: function stopLoading() {
+      this.state.loading = false;
+    },
     setResponse: function setResponse(state, response) {
       this.state.lastRequest = response;
     }

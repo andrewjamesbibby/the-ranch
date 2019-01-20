@@ -11,7 +11,6 @@
                     <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
                 </div>
             </div>
-
             <div class="field">
                 <p class="control">
                     <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
@@ -28,14 +27,17 @@
         data : function(){
             return {
                 readerId : null,
-                loading : false,
             }
+        },
+        computed : {
+            loading : function () {
+                return this.$store.state.loading;
+            },
         },
         methods : {
             submit: function () {
                 var self = this;
-
-                self.loading = true;
+                self.$store.commit('startLoading');
 
                 axios.get('/api/readers/' + self.readerId)
                 .then(function(response) {
@@ -45,7 +47,7 @@
                     console.log(error);
                 })
                 .then(function() {
-                    self.loading = false;
+                    self.$store.commit('stopLoading');
                 });
             }
         }

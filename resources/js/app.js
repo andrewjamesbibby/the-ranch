@@ -45,6 +45,10 @@ const router = new VueRouter({
             component: Readers,
             children: [
                 {
+                    path: '',
+                    component: ListReaders
+                },
+                {
                     path: 'list',
                     component: ListReaders
                 },
