@@ -1,8 +1,14 @@
 <template>
     <div>
-        <div class="box">
-            <strong>Create Reader</strong>
-            <p>Create a new publisher reader</p>
+        <div class="card mb-20">
+            <header class="card-header">
+                <p class="card-header-title">Create Reader</p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    Create a new publisher reader
+                </div>
+            </div>
         </div>
 
         <form>
@@ -28,10 +34,9 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="password" v-model="password">
+                    <input class="input" type="text" placeholder="Password" v-model="password">
                 </div>
             </div>
-
             <div class="field">
                 <p class="control">
                     <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
@@ -42,7 +47,6 @@
 </template>
 <script>
     export default {
-        components: { },
         data : function(){
             return {
                 username : '',
@@ -50,14 +54,17 @@
                 firstName : '',
                 lastName : '',
                 password : '',
-                loading : false,
             }
+        },
+        computed : {
+            loading : function () {
+                return this.$store.state.loading;
+            },
         },
         methods : {
             submit: function () {
                 var self = this;
-
-                self.loading = true;
+                self.$store.commit('startLoading');
 
                 axios.post('/api/readers', {
                     'username'     : self.username,
@@ -73,7 +80,7 @@
                     console.log(error);
                 })
                 .then(function() {
-                    self.loading = false;
+                    self.$store.commit('stopLoading');
                 });
             }
         }

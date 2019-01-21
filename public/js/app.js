@@ -3018,22 +3018,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   data: function data() {
     return {
       username: '',
       emailAddress: '',
       firstName: '',
       lastName: '',
-      password: '',
-      loading: false
+      password: ''
     };
+  },
+  computed: {
+    loading: function loading() {
+      return this.$store.state.loading;
+    }
   },
   methods: {
     submit: function submit() {
       var self = this;
-      self.loading = true;
+      self.$store.commit('startLoading');
       axios.post('/api/readers', {
         'username': self.username,
         'emailAddress': self.emailAddress,
@@ -3045,7 +3053,7 @@ __webpack_require__.r(__webpack_exports__);
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
-        self.loading = false;
+        self.$store.commit('stopLoading');
       });
     }
   }
@@ -3083,24 +3091,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   data: function data() {
     return {
-      readerId: null,
-      loading: false
+      readerId: null
     };
+  },
+  computed: {
+    loading: function loading() {
+      return this.$store.state.loading;
+    }
   },
   methods: {
     submit: function submit() {
       var self = this;
-      self.loading = true;
+      self.$store.commit('startLoading');
       axios.delete('/api/readers/' + self.readerId).then(function (response) {
         self.$store.commit('setResponse', response.data);
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
-        self.loading = false;
+        self.$store.commit('stopLoading');
       });
     }
   }
@@ -3117,6 +3134,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3157,7 +3180,6 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       self.$store.commit('startLoading');
       axios.get('/api/readers/' + self.readerId).then(function (response) {
-        console.log(response.data);
         self.$store.commit('setResponse', response.data);
       }).catch(function (error) {
         console.log(error);
@@ -3203,11 +3225,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
     return {
-      readerId: null
+      readerId: null,
+      emailAddress: '',
+      username: '',
+      firstName: '',
+      lastName: '',
+      nodeId: '',
+      subscription: ''
     };
   },
   computed: {
@@ -3219,7 +3277,16 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var self = this;
       self.$store.commit('startLoading');
-      axios.get('/api/readers').then(function (response) {
+      axios.get('/api/readers', {
+        params: {
+          'emailAddress': self.emailAddress,
+          'username': self.username,
+          'firstName': self.firstName,
+          'lastName': self.lastName,
+          'nodeId': self.nodeId,
+          'subscription': self.subscription
+        }
+      }).then(function (response) {
         self.$store.commit('setResponse', response.data);
       }).catch(function (error) {
         console.log(error);
@@ -3288,8 +3355,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   data: function data() {
     return {
       readerId: null,
@@ -3297,14 +3369,18 @@ __webpack_require__.r(__webpack_exports__);
       emailAddress: '',
       firstName: '',
       lastName: '',
-      password: '',
-      loading: false
+      password: ''
     };
+  },
+  computed: {
+    loading: function loading() {
+      return this.$store.state.loading;
+    }
   },
   methods: {
     submit: function submit() {
       var self = this;
-      self.loading = true;
+      self.$store.commit('startLoading');
       axios.put('/api/readers/' + self.readerId, {
         'username': self.username,
         'emailAddress': self.emailAddress,
@@ -3316,7 +3392,7 @@ __webpack_require__.r(__webpack_exports__);
       }).catch(function (error) {
         console.log(error);
       }).then(function () {
-        self.loading = false;
+        self.$store.commit('stopLoading');
       });
     }
   }
@@ -21195,7 +21271,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("header", { staticClass: "card-header" }, [
-      _c("p", { staticClass: "card-header-title" }, [_vm._v("Request")]),
+      _c("p", { staticClass: "card-header-title" }, [_vm._v("Raw")]),
       _vm._v(" "),
       _c(
         "a",
@@ -21792,7 +21868,7 @@ var render = function() {
               }
             ],
             staticClass: "input",
-            attrs: { type: "text", placeholder: "password" },
+            attrs: { type: "text", placeholder: "Password" },
             domProps: { value: _vm.password },
             on: {
               input: function($event) {
@@ -21827,10 +21903,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("strong", [_vm._v("Create Reader")]),
+    return _c("div", { staticClass: "card mb-20" }, [
+      _c("header", { staticClass: "card-header" }, [
+        _c("p", { staticClass: "card-header-title" }, [_vm._v("Create Reader")])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Create a new publisher reader")])
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm._v(
+            "\n                Create a new publisher reader\n            "
+          )
+        ])
+      ])
     ])
   }
 ]
@@ -21906,10 +21990,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("strong", [_vm._v("Delete Reader")]),
+    return _c("div", { staticClass: "card mb-20" }, [
+      _c("header", { staticClass: "card-header" }, [
+        _c("p", { staticClass: "card-header-title" }, [_vm._v("Delete Reader")])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Delete a publisher reader")])
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm._v("\n                Delete a publisher reader\n            ")
+        ])
+      ])
     ])
   }
 ]
@@ -21985,10 +22075,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("strong", [_vm._v("Find Reader")]),
+    return _c("div", { staticClass: "card mb-20" }, [
+      _c("header", { staticClass: "card-header" }, [
+        _c("p", { staticClass: "card-header-title" }, [_vm._v("Find Reader")])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Find a publisher reader by ID.")])
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm._v(
+            "\n                Find a publisher reader by ID.\n            "
+          )
+        ])
+      ])
     ])
   }
 ]
@@ -22018,6 +22116,162 @@ var render = function() {
     _vm._v(" "),
     _c("form", [
       _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.emailAddress,
+                expression: "emailAddress"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Email Address" },
+            domProps: { value: _vm.emailAddress },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.emailAddress = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.username,
+                expression: "username"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Username" },
+            domProps: { value: _vm.username },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.username = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.firstName,
+                expression: "firstName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: First Name" },
+            domProps: { value: _vm.firstName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.firstName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.lastName,
+                expression: "lastName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Last Name" },
+            domProps: { value: _vm.lastName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.lastName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nodeId,
+                expression: "nodeId"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Node Id" },
+            domProps: { value: _vm.nodeId },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nodeId = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.subscription,
+                expression: "subscription"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Subscription" },
+            domProps: { value: _vm.subscription },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.subscription = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
         _c("p", { staticClass: "control" }, [
           _c(
             "a",
@@ -22038,7 +22292,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
+    return _c("div", { staticClass: "card mb-20" }, [
       _c("header", { staticClass: "card-header" }, [
         _c("p", { staticClass: "card-header-title" }, [_vm._v("List Readers")])
       ]),
@@ -22077,7 +22331,7 @@ var render = function() {
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
-    _c("form", [
+    _c("form", { attrs: { id: "updateForm" } }, [
       _c("div", { staticClass: "field" }, [
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -22255,10 +22509,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box" }, [
-      _c("strong", [_vm._v("Update Reader")]),
+    return _c("div", { staticClass: "card mb-20" }, [
+      _c("header", { staticClass: "card-header" }, [
+        _c("p", { staticClass: "card-header-title" }, [_vm._v("Update Reader")])
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v("Update a publisher reader")])
+      _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "content" }, [
+          _vm._v("\n                Update a publisher reader\n            ")
+        ])
+      ])
     ])
   }
 ]

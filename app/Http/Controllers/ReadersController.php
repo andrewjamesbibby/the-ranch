@@ -21,7 +21,17 @@ class ReadersController extends Controller
 
     public function getReaders(Publisher $publisher, Request $request){
 
-        $results = $publisher->getReaders();
+
+
+
+        $results = $publisher->getReaders([
+            'emailAddress' =>  $request->get('emailAddress'),
+            'username'     =>  $request->get('username'),
+            'firstName'    =>  $request->get('firstName'),
+            'lastName'     =>  $request->get('lastName'),
+            'nodeId'       =>  $request->get('nodeId'),
+            'subscription' =>  $request->get('subscription'),
+        ]);
 
         return [
             'raw'        => $results->raw(),

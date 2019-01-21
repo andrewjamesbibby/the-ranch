@@ -76,7 +76,7 @@
 
                 <div class="request card mb-20">
                     <header class="card-header">
-                        <p class="card-header-title">Request</p>
+                        <p class="card-header-title">Raw</p>
                         <a href="#" class="card-header-icon" aria-label="copy">
                             <span class="icon">
                               <i class="far fa-copy" aria-hidden="true"></i>

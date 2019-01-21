@@ -1,8 +1,14 @@
 <template>
     <div>
-        <div class="box">
-            <strong>Delete Reader</strong>
-            <p>Delete a publisher reader</p>
+        <div class="card mb-20">
+            <header class="card-header">
+                <p class="card-header-title">Delete Reader</p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    Delete a publisher reader
+                </div>
+            </div>
         </div>
 
         <form>
@@ -21,18 +27,20 @@
 </template>
 <script>
     export default {
-        components: { },
         data : function(){
             return {
                 readerId : null,
-                loading : false,
             }
+        },
+        computed : {
+            loading : function () {
+                return this.$store.state.loading;
+            },
         },
         methods : {
             submit: function () {
                 var self = this;
-
-                self.loading = true;
+                self.$store.commit('startLoading');
 
                 axios.delete('/api/readers/' + self.readerId)
                 .then(function(response) {
@@ -42,7 +50,7 @@
                     console.log(error);
                 })
                 .then(function() {
-                    self.loading = false;
+                    self.$store.commit('stopLoading');
                 });
             }
         }

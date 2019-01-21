@@ -1,11 +1,17 @@
 <template>
     <div>
-        <div class="box">
-            <strong>Update Reader</strong>
-            <p>Update a publisher reader</p>
+        <div class="card mb-20">
+            <header class="card-header">
+                <p class="card-header-title">Update Reader</p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    Update a publisher reader
+                </div>
+            </div>
         </div>
 
-        <form>
+        <form id="updateForm">
             <div class="field">
                 <div class="control">
                     <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
@@ -47,7 +53,6 @@
 </template>
 <script>
     export default {
-        components: { },
         data : function(){
             return {
                 readerId : null,
@@ -56,14 +61,17 @@
                 firstName : '',
                 lastName : '',
                 password : '',
-                loading : false,
             }
+        },
+        computed : {
+            loading : function () {
+                return this.$store.state.loading;
+            },
         },
         methods : {
             submit: function () {
                 var self = this;
-
-                self.loading = true;
+                self.$store.commit('startLoading');
 
                 axios.put('/api/readers/' + self.readerId, {
                     'username'     : self.username,
@@ -79,7 +87,7 @@
                     console.log(error);
                 })
                 .then(function() {
-                    self.loading = false;
+                    self.$store.commit('stopLoading');
                 });
             }
         }

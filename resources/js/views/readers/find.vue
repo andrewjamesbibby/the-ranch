@@ -1,8 +1,14 @@
 <template>
     <div>
-        <div class="box">
-            <strong>Find Reader</strong>
-            <p>Find a publisher reader by ID.</p>
+        <div class="card mb-20">
+            <header class="card-header">
+                <p class="card-header-title">Find Reader</p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    Find a publisher reader by ID.
+                </div>
+            </div>
         </div>
 
         <form>
@@ -41,9 +47,6 @@
 
                 axios.get('/api/readers/' + self.readerId)
                 .then(function(response) {
-
-                    console.log(response.data);
-
                     self.$store.commit('setResponse' , response.data);
                 })
                 .catch(function(error) {
