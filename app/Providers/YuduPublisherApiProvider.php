@@ -25,7 +25,7 @@ class YuduPublisherApiProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(Publisher::class, function ($app) {
-            return new Publisher(config('yudu.key'), config('yudu.secret'));
+            return new Publisher(config('yudu.key'), config('yudu.secret'), [ 'debug' => true ]);
         });
     }
 }

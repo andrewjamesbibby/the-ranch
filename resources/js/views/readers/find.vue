@@ -41,6 +41,9 @@
 
                 axios.get('/api/readers/' + self.readerId)
                 .then(function(response) {
+
+                    console.log(response.data);
+
                     self.$store.commit('setResponse' , response.data);
                 })
                 .catch(function(error) {

@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class ReadersController extends Controller
 {
 
-    public function getReader(Publisher $publisher, Request $request){
+    public function getReader(Publisher $publisher, $id){
 
-        $results = $publisher->getReader($request->id);
+        $results = $publisher->getReader($id);
 
         return [
-            'request'    => 'hopefully raw request here',
+            'raw'        => $results->raw(),
             'statusCode' => $results->statusCode(),
             'body'       => $results->xmlString(),
         ];
@@ -23,7 +23,11 @@ class ReadersController extends Controller
 
         $results = $publisher->getReaders();
 
-        return $results->xmlString();
+        return [
+            'raw'        => $results->raw(),
+            'statusCode' => $results->statusCode(),
+            'body'       => $results->xmlString(),
+        ];
     }
 
     public function createReader(Publisher $publisher, Request $request){
@@ -36,7 +40,11 @@ class ReadersController extends Controller
             'password'      => $request->password,
         ]);
 
-        return $results->xmlString();
+        return [
+            'raw'        => $results->raw(),
+            'statusCode' => $results->statusCode(),
+            'body'       => $results->xmlString(),
+        ];
     }
 
     public function updateReader(Publisher $publisher, Request $request, $readerId){
@@ -49,14 +57,22 @@ class ReadersController extends Controller
             'password'      => $request->password,
         ]);
 
-        return $results->xmlString();
+        return [
+            'raw'        => $results->raw(),
+            'statusCode' => $results->statusCode(),
+            'body'       => $results->xmlString(),
+        ];
     }
 
     public function deleteReader(Publisher $publisher, Request $request, $readerId){
 
         $results = $publisher->deleteReader($readerId);
 
-        return $results->xmlString();
+        return [
+            'raw'        => $results->raw(),
+            'statusCode' => $results->statusCode(),
+            'body'       => $results->xmlString(),
+        ];
     }
 
 }

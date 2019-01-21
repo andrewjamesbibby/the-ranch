@@ -3,7 +3,16 @@
         <div class="loading-window" v-if="loading"></div>
 
         <nav class="navbar has-shadow">
-
+            <div class="navbar-brand">
+                <p class="navbar-item" href="/">
+                    <img :src="'/images/neverland.gif'" height="28"> &nbsp;&nbsp; <strong> NEVERLAND </strong> | REST API PLAYGROUND
+                </p>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
         </nav>
 
         <div class="columns">
@@ -59,32 +68,43 @@
                 </div>
             </aside>
 
-            <div id ="builder" class="column is-5 is-fullheight">
+            <div id ="builder" class="column is-4 is-fullheight">
                 <router-view></router-view>
             </div>
 
-            <div id="response" class="column is-5">
+            <div id="output" class="column is-6">
 
-                <div class="card mb-10">
+                <div class="request card mb-20">
                     <header class="card-header">
                         <p class="card-header-title">Request</p>
+                        <a href="#" class="card-header-icon" aria-label="copy">
+                            <span class="icon">
+                              <i class="far fa-copy" aria-hidden="true"></i>
+                            </span>
+                        </a>
                     </header>
                     <div class="card-content">
                         <div class="content">
-                            // request variables and other stuff in here.
-                            // If can get raw request even better!
+                            <pre>{{ lastRequest.raw }}</pre>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="response card">
                     <header class="card-header">
-                        <p class="card-header-title">Response</p>
+                        <p class="card-header-title">
+                            Response &nbsp;
+                            <span class="tag is-default is-medium">{{ lastRequest.statusCode }}</span>
+                        </p>
+                        <a href="#" class="card-header-icon" aria-label="copy">
+                            <span class="icon">
+                              <i class="far fa-copy" aria-hidden="true"></i>
+                            </span>
+                        </a>
                     </header>
                     <div class="card-content">
                         <div class="content">
-                            <span class="tag is-medium is-success"> 200 </span>
-                            <pre>{{ lastRequest }}</pre>
+                            <pre>{{ lastRequest.body }}</pre>
                         </div>
                     </div>
                 </div>
@@ -99,7 +119,6 @@
     export default {
         data : function(){
             return {
-
             }
         },
         computed : {
@@ -108,7 +127,7 @@
             },
             lastRequest : function() {
                 return this.$store.state.lastRequest;
-            }
+            },
         }
     }
 </script>

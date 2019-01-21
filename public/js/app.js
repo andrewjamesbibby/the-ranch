@@ -2879,6 +2879,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -3137,6 +3157,7 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       self.$store.commit('startLoading');
       axios.get('/api/readers/' + self.readerId).then(function (response) {
+        console.log(response.data);
         self.$store.commit('setResponse', response.data);
       }).catch(function (error) {
         console.log(error);
@@ -20932,7 +20953,18 @@ var render = function() {
   return _c("div", [
     _vm.loading ? _c("div", { staticClass: "loading-window" }) : _vm._e(),
     _vm._v(" "),
-    _c("nav", { staticClass: "navbar has-shadow" }),
+    _c("nav", { staticClass: "navbar has-shadow" }, [
+      _c("div", { staticClass: "navbar-brand" }, [
+        _c("p", { staticClass: "navbar-item", attrs: { href: "/" } }, [
+          _c("img", { attrs: { src: "/images/neverland.gif", height: "28" } }),
+          _vm._v("    "),
+          _c("strong", [_vm._v(" NEVERLAND ")]),
+          _vm._v(" | REST API PLAYGROUND\n            ")
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "columns" }, [
       _c("aside", { staticClass: "column is-2 aside hero is-fullheight" }, [
@@ -21093,24 +21125,39 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "column is-5 is-fullheight", attrs: { id: "builder" } },
+        { staticClass: "column is-4 is-fullheight", attrs: { id: "builder" } },
         [_c("router-view")],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "column is-5", attrs: { id: "response" } }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "column is-6", attrs: { id: "output" } }, [
+        _c("div", { staticClass: "request card mb-20" }, [
           _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-content" }, [
             _c("div", { staticClass: "content" }, [
-              _c("span", { staticClass: "tag is-medium is-success" }, [
-                _vm._v(" 200 ")
-              ]),
-              _vm._v(" "),
-              _c("pre", [_vm._v(_vm._s(_vm.lastRequest))])
+              _c("pre", [_vm._v(_vm._s(_vm.lastRequest.raw))])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "response card" }, [
+          _c("header", { staticClass: "card-header" }, [
+            _c("p", { staticClass: "card-header-title" }, [
+              _vm._v(
+                "\n                        Response  \n                        "
+              ),
+              _c("span", { staticClass: "tag is-default is-medium" }, [
+                _vm._v(_vm._s(_vm.lastRequest.statusCode))
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "content" }, [
+              _c("pre", [_vm._v(_vm._s(_vm.lastRequest.body))])
             ])
           ])
         ])
@@ -21123,27 +21170,69 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mb-10" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("Request")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _vm._v(
-            "\n                        // request variables and other stuff in here.\n                        // If can get raw request even better!\n                    "
-          )
-        ])
-      ])
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "navbar-burger burger",
+        attrs: {
+          role: "button",
+          "aria-label": "menu",
+          "aria-expanded": "false",
+          "data-target": "navbarBasicExample"
+        }
+      },
+      [
+        _c("span", { attrs: { "aria-hidden": "true" } }),
+        _vm._v(" "),
+        _c("span", { attrs: { "aria-hidden": "true" } }),
+        _vm._v(" "),
+        _c("span", { attrs: { "aria-hidden": "true" } })
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("header", { staticClass: "card-header" }, [
-      _c("p", { staticClass: "card-header-title" }, [_vm._v("Response")])
+      _c("p", { staticClass: "card-header-title" }, [_vm._v("Request")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "card-header-icon",
+          attrs: { href: "#", "aria-label": "copy" }
+        },
+        [
+          _c("span", { staticClass: "icon" }, [
+            _c("i", {
+              staticClass: "far fa-copy",
+              attrs: { "aria-hidden": "true" }
+            })
+          ])
+        ]
+      )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "card-header-icon",
+        attrs: { href: "#", "aria-label": "copy" }
+      },
+      [
+        _c("span", { staticClass: "icon" }, [
+          _c("i", {
+            staticClass: "far fa-copy",
+            attrs: { "aria-hidden": "true" }
+          })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -36272,7 +36361,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(Vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new Vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     loading: false,
-    lastRequest: ''
+    lastRequest: {
+      raw: null,
+      statusCode: null,
+      body: null
+    }
   },
   getters: {},
   mutations: {

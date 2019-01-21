@@ -45,12 +45,27 @@ html,body {
   padding: 40px 20px;
 }
 
-#response {
+#output {
   display:block;
   background-color: #fff;
-  padding: 40px 25px;
+  padding: 4vh 25px;
   height: 100vh;
-  overflow-y: scroll;
+}
+
+#output .request {
+  height: 44vh;
+}
+
+#output .request pre {
+   max-height:35vh;
+ }
+
+#output .response{
+  height: 44vh;
+}
+
+#output .response pre {
+  max-height:35vh;
 }
 
 .loading-window {
@@ -61,14 +76,6 @@ html,body {
   top: 0;
   left: 0;
   z-index: 1001;
-}
-
-#response .meta{
-  border: solid 1px blue;
-}
-
-#response .body{
-  border: solid 1px red;
 }
 
 .aside .main {
@@ -129,3 +136,6 @@ html,body {
   margin-bottom: 10px;
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}

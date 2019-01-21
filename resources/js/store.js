@@ -6,7 +6,11 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         loading: false,
-        lastRequest: '',
+        lastRequest: {
+            raw : null,
+            statusCode : null,
+            body : null,
+        },
     },
     getters: {
     },
