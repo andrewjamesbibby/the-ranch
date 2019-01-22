@@ -1,18 +1,22 @@
 <template>
     <div>
+        <credentialsModal></credentialsModal>
+
         <div class="loading-window" v-if="loading"></div>
 
         <nav class="navbar has-shadow">
+
             <div class="navbar-brand">
                 <p class="navbar-item" href="/">
                     <img :src="'/images/neverland.gif'" height="28"> &nbsp;&nbsp; <strong> NEVERLAND </strong> | REST API PLAYGROUND
                 </p>
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
+
         </nav>
 
         <div class="columns">
@@ -68,8 +72,10 @@
 </template>
 <script>
     import mainNav from './layouts/mainNav';
+    import CredentialsModal from "../components/credentialsModal";
     export default {
         components : {
+            CredentialsModal,
             mainNav
         },
         data : function(){
