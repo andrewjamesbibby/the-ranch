@@ -6,24 +6,21 @@
             </header>
             <div class="card-content">
                 <div class="content">
-                    Find a publisher reader by ID.
+                    <form>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <form>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
-                </div>
-            </div>
-            <div class="field">
-                <p class="control">
-                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
-                </p>
-            </div>
-        </form>
-
     </div>
 </template>
 

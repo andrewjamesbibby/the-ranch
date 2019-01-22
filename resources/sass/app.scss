@@ -11,38 +11,38 @@ html,body {
   overflow: hidden;
 }
 
-.nav.menu {
-  border-bottom: 1px solid #e1e1e1;
-}
-.nav.menu .nav-item .icon-btn {
-  border: 3px solid #B7C6C9;
-  border-radius: 90px;
-  padding: 5px 7px;
-  color: #B7C6C9;
-}
-.nav.menu .nav-item.is-active .icon-btn {
-  color: #2EB398;
-  border: 3px solid #2EB398;
-}
-.nav.menu .nav-item .icon-btn .fa {
-  font-size: 20px;
-  color: #B7C6C9;
-}
-.nav.menu .nav-item.is-active .icon-btn .fa {
-  color: #2EB398;
+.mb-10 {
+  margin-bottom: 10px;
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}
 
-
-.aside {
+#main-nav {
   display:block;
   background-color: #F9F9F9;
   border-right: 1px solid #DEDEDE;
+  padding: 30px 30px 80px 30px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+#main-nav li.is-active {
+  background-color: #ececec;
+}
+
+#main-nav li.is-active a:hover {
+  background-color: #ececec;
+}
+
+#main-nav .menu-list a.is-active {
+  background-color: #606561;
 }
 
 #builder {
   border-right: 1px solid #DEDEDE;
-  padding: 40px 20px;
+  padding: 4vh 20px;
 }
 
 #output {
@@ -57,7 +57,7 @@ html,body {
 }
 
 #output .request pre {
-   max-height:35vh;
+   height:34vh;
  }
 
 #output .response{
@@ -65,7 +65,7 @@ html,body {
 }
 
 #output .response pre {
-  max-height:35vh;
+  height:34vh;
 }
 
 .loading-window {
@@ -76,66 +76,4 @@ html,body {
   top: 0;
   left: 0;
   z-index: 1001;
-}
-
-.aside .main {
-  padding: 40px;
-  color: #6F7B7E;
-}
-
-.aside .title {
-  color: #6F7B7E;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.aside .main .item {
-  display: block;
-  padding: 10px 0;
-  color: #6F7B7E;
-}
-.aside .main .item.is-active {
-  background-color: #F1F1F1;
-  margin: 0 -50px;
-  padding-left: 50px;
-}
-
-.aside .main .item.is-active .icon {
-  color: #00b92b;
-}
-
-.aside .main .item:active, .aside .main .item:hover {
-  background-color: #F2F2F2;
-  margin: 0 -50px;
-  padding-left: 50px;
-}
-
-.aside .main .icon {
-  font-size: 15px;
-  padding-right: 22px;
-  color: #A0A0A0;
-}
-
-.aside .main .name {
-  font-size: 13px;
-  color: #5D5D5D;
-  font-weight: 500;
-}
-
-//.tabs.is-toggle li.is-active a {
-//  background-color: #cacaca;
-//  border-color: #3273dc;
-//  color: #fff;
-//  z-index: 1;
-//}
-
-
-
-
-.mb-10 {
-  margin-bottom: 10px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
 }

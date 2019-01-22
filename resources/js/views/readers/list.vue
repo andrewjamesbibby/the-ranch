@@ -6,49 +6,46 @@
             </header>
             <div class="card-content">
                 <div class="content">
-                    Find and display all publisher readers
+                    <form>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Filter By: Email Address" v-model="emailAddress">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Filter By: Username" v-model="username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Filter By: First Name" v-model="firstName">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Filter By: Last Name" v-model="lastName">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Filter By: Node Id" v-model="nodeId">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Filter By: Subscription" v-model="subscription">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <p class="control">
+                                <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                            </p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <form>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Email Address" v-model="emailAddress">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Username" v-model="username">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: First Name" v-model="firstName">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Last Name" v-model="lastName">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Node Id" v-model="nodeId">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Subscription" v-model="subscription">
-                </div>
-            </div>
-            <div class="field">
-                <p class="control">
-                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
-                </p>
-            </div>
-        </form>
-
     </div>
 </template>
 

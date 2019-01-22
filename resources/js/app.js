@@ -15,6 +15,7 @@ import Home from './views/Home'
 
 import Readers from './views/Readers'
 import ListReaders from './views/readers/list'
+import ReadersInfo from './views/readers/info'
 import FindReader from './views/readers/find'
 import CreateReader from './views/readers/create'
 import UpdateReader from './views/readers/update'
@@ -46,7 +47,7 @@ const router = new VueRouter({
             children: [
                 {
                     path: '',
-                    component: ListReaders
+                    component: ReadersInfo
                 },
                 {
                     path: 'list',
