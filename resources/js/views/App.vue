@@ -5,7 +5,6 @@
         <div class="loading-window" v-if="loading"></div>
 
         <nav class="navbar has-shadow">
-
             <div class="navbar-brand">
                 <p class="navbar-item" href="/">
                     <img :src="'/images/neverland.gif'" height="28"> &nbsp;&nbsp; <strong> NEVERLAND </strong> | REST API PLAYGROUND
@@ -16,11 +15,9 @@
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-
         </nav>
 
         <div class="columns">
-
             <mainNav></mainNav>
 
             <div id ="builder" class="column is-3 is-fullheight">
@@ -28,7 +25,6 @@
             </div>
 
             <div id="output" class="column is-7">
-
                 <div class="request card mb-20">
                     <header class="card-header">
                         <p class="card-header-title">Raw</p>
@@ -63,9 +59,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
 
     </div>

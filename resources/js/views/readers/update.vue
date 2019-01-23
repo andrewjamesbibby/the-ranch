@@ -72,17 +72,21 @@
                 self.$store.commit('startLoading');
 
                 axios.put('/api/readers/' + self.readerId, {
-                    'username'     : self.username,
-                    'emailAddress' : self.emailAddress,
-                    'firstName'    : self.firstName,
-                    'lastName'     : self.lastName,
-                    'password'     : self.password,
+                    publisherKey    : self.$store.state.credentials.key,
+                    publisherSecret : self.$store.state.credentials.secret,
+                    username        : self.username,
+                    emailAddress    : self.emailAddress,
+                    firstName       : self.firstName,
+                    lastName        : self.lastName,
+                    password        : self.password,
                 })
                 .then(function(response) {
                     self.$store.commit('setResponse' , response.data);
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    if(error.response){
+                        alert(error.response.data.message)
+                    }
                 })
                 .then(function() {
                     self.$store.commit('stopLoading');

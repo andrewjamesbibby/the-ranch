@@ -89,7 +89,9 @@
                     self.$store.commit('setResponse' , response.data);
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    if(error.response){
+                        alert(error.response.data.message)
+                    }
                 })
                 .then(function() {
                     self.$store.commit('stopLoading');
