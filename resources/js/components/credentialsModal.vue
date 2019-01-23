@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-bind:class="{ 'is-active' : active }">
+    <div class="modal" v-bind:class="{ 'is-active' : publisherModal }">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -10,19 +10,17 @@
                 <form>
                     <div class="field">
                         <div class="control">
-                            <input class="input" type="text" placeholder="Publisher Key" v-model="key">
+                            <input class="input" type="text" placeholder="Publisher Key" v-model="publisherKey">
                         </div>
                     </div>
                     <div class="field">
                         <div class="control">
-                            <input class="input" type="text" placeholder="Pubisher Secret" v-model="secret">
+                            <input class="input" type="text" placeholder="Pubisher Secret" v-model="publisherSecret">
                         </div>
                     </div>
                 </form>
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-success" @click="saveCredentials">Save</button>
-                <button class="button" @click="closeModal">Cancel</button>
             </footer>
         </div>
     </div>
@@ -30,22 +28,36 @@
 
 <script>
     export default {
-        data : function(){
-            return {
-                active : true
-            }
+        computed : {
+            publisherModal: {
+                get : function(){
+                    return this.$store.state.credentials.modal;
+                },
+                set : function(value){
+                    this.$store.commit('toggleCredentialsModal', value);
+                }
+            },
+            publisherKey: {
+                get : function(){
+                    return this.$store.state.credentials.key;
+                },
+                set : function(value){
+                    this.$store.commit('setKey', value);
+                }
+            },
+            publisherSecret: {
+                get : function(){
+                    return this.$store.state.credentials.secret;
+                },
+                set : function(value){
+                    this.$store.commit('setSecret', value);
+                }
+            },
         },
         methods : {
             closeModal : function() {
-                this.active = false;
-            },
-            saveCredentials : function(){
-                this.active = false;
+                this.$store.commit('toggleCredentialsModal', false);
             }
         }
     }
 </script>
-
-<style scoped>
-
-</style>

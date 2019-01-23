@@ -4,7 +4,13 @@ import Vuex from 'Vuex';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+    strict: true,
     state: {
+        credentials : {
+            modal : false,
+            key : '',
+            secret : '',
+        },
         loading: false,
         lastRequest: {
             raw : null,
@@ -23,7 +29,16 @@ const store = new Vuex.Store({
         },
         setResponse(state, response) {
            this.state.lastRequest = response;
-        }
+        },
+        setKey(state, value) {
+            this.state.credentials.key = value;
+        },
+        setSecret(state, value) {
+            this.state.credentials.secret = value;
+        },
+        toggleCredentialsModal(state, value) {
+            this.state.credentials.modal = value;
+        },
     }
 });
 

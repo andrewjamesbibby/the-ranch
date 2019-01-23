@@ -65,11 +65,13 @@
                 self.$store.commit('startLoading');
 
                 axios.post('/api/readers', {
-                    'username'     : self.username,
-                    'emailAddress' : self.emailAddress,
-                    'firstName'    : self.firstName,
-                    'lastName'     : self.lastName,
-                    'password'     : self.password,
+                    publisherKey    : self.$store.state.credentials.key,
+                    publisherSecret : self.$store.state.credentials.secret,
+                    username        : self.username,
+                    emailAddress    : self.emailAddress,
+                    firstName       : self.firstName,
+                    lastName        : self.lastName,
+                    password        : self.password,
                 })
                 .then(function(response) {
                     self.$store.commit('setResponse' , response.data);

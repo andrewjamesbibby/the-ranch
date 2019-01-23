@@ -42,12 +42,17 @@
                 var self = this;
                 self.$store.commit('startLoading');
 
-                axios.get('/api/readers/' + self.readerId)
+                axios.get('/api/readers/' + self.readerId, {
+                    params: {
+                        publisherKey    : self.$store.state.credentials.key,
+                        publisherSecret : self.$store.state.credentials.secret,
+                    },
+                })
                 .then(function(response) {
                     self.$store.commit('setResponse' , response.data);
                 })
                 .catch(function(error) {
-                    console.log(error);
+                    console.log('error');
                 })
                 .then(function() {
                     self.$store.commit('stopLoading');

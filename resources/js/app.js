@@ -1,5 +1,10 @@
 
-require('./bootstrap');
+window.axios = require('axios');
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -7,6 +12,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import store from './store';
+
+
 
 
 

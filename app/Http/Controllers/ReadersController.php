@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class ReadersController extends Controller
 {
+    private $publisher;
 
-    public function getReader(Publisher $publisher, $id){
+    public function __construct(Request $request)
+    {
+        $this->publisher = new Publisher($request->publisherKey, $request->publisherSecret, [ 'debug' => true ]);
+    }
 
-        $results = $publisher->getReader($id);
+    public function getReader($id){
+
+        $results = $this->publisher->getReader($id);
 
         return [
             'raw'        => $results->raw(),
@@ -19,12 +25,9 @@ class ReadersController extends Controller
         ];
     }
 
-    public function getReaders(Publisher $publisher, Request $request){
+    public function getReaders(Request $request){
 
-
-
-
-        $results = $publisher->getReaders([
+        $results = $this->publisher->getReaders([
             'emailAddress' =>  $request->get('emailAddress'),
             'username'     =>  $request->get('username'),
             'firstName'    =>  $request->get('firstName'),
@@ -40,9 +43,9 @@ class ReadersController extends Controller
         ];
     }
 
-    public function createReader(Publisher $publisher, Request $request){
+    public function createReader(Request $request){
 
-        $results = $publisher->createReader([
+        $results = $this->publisher->createReader([
             'username'      => $request->username,
             'emailAddress'  => $request->emailAddress,
             'firstName'     => $request->firstName,
@@ -57,9 +60,9 @@ class ReadersController extends Controller
         ];
     }
 
-    public function updateReader(Publisher $publisher, Request $request, $readerId){
+    public function updateReader(Request $request, $readerId){
 
-        $results = $publisher->updateReader($readerId , [
+        $results = $this->publisher->updateReader($readerId , [
             'username'      => $request->username,
             'emailAddress'  => $request->emailAddress,
             'firstName'     => $request->firstName,
@@ -74,9 +77,9 @@ class ReadersController extends Controller
         ];
     }
 
-    public function deleteReader(Publisher $publisher, Request $request, $readerId){
+    public function deleteReader($readerId){
 
-        $results = $publisher->deleteReader($readerId);
+        $results = $this->publisher->deleteReader($readerId);
 
         return [
             'raw'        => $results->raw(),
@@ -84,5 +87,4 @@ class ReadersController extends Controller
             'body'       => $results->xmlString(),
         ];
     }
-
 }

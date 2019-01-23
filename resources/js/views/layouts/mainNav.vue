@@ -2,6 +2,14 @@
     <div id="main-nav" class="menu column is-2">
         <ul class="menu-list">
             <li>
+                <a href="#" class="item" @click="openCredentialsModal">
+                    <span class="icon">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <span class="name"> Credentials </span>
+                </a>
+            </li>
+            <li>
                 <router-link to="/readers" class="item">
                     <span class="icon"><i class="fa fa-book-reader"></i></span><span class="name">  Readers</span>
                 </router-link>
@@ -101,3 +109,12 @@
         </ul>
     </div>
 </template>
+<script>
+    export default {
+        methods : {
+            openCredentialsModal: function() {
+                this.$store.commit('toggleCredentialsModal', true);
+            }
+        }
+    }
+</script>

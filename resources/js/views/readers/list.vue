@@ -75,12 +75,14 @@
 
                 axios.get('/api/readers', {
                     params : {
-                        'emailAddress' : self.emailAddress,
-                        'username'     : self.username,
-                        'firstName'    : self.firstName,
-                        'lastName'     : self.lastName,
-                        'nodeId'       : self.nodeId,
-                        'subscription' : self.subscription,
+                        publisherKey    : self.$store.state.credentials.key,
+                        publisherSecret : self.$store.state.credentials.secret,
+                        emailAddress    : self.emailAddress,
+                        username        : self.username,
+                        firstName       : self.firstName,
+                        lastName        : self.lastName,
+                        nodeId          : self.nodeId,
+                        subscription    : self.subscription,
                     }
                 })
                 .then(function(response) {
