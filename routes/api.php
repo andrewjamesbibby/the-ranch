@@ -12,3 +12,5 @@ Route::get('/readers/{id}', 'ReadersController@getReader');
 Route::post('/readers', 'ReadersController@createReader');
 Route::put('/readers/{id}', 'ReadersController@updateReader');
 Route::delete('/readers/{id}', 'ReadersController@deleteReader');
+
+Route::post('/targeted-notifications', 'TargetedNotificationsController@send');

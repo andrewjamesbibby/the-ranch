@@ -22,7 +22,6 @@ import Home from './views/Home'
 
 import Readers from './views/Readers'
 import ListReaders from './views/readers/list'
-import ReadersInfo from './views/readers/info'
 import FindReader from './views/readers/find'
 import CreateReader from './views/readers/create'
 import UpdateReader from './views/readers/update'
@@ -30,6 +29,7 @@ import DeleteReader from './views/readers/delete'
 
 import Editions from './views/Editions'
 import ListEditions from './views/editions/list'
+import FindEdition from './views/editions/find'
 
 
 import Permissions from './views/Permissions'
@@ -49,13 +49,8 @@ const router = new VueRouter({
         { path: '/', name: 'home', component: Home },
         {
             path: '/readers',
-            name: 'readers',
             component: Readers,
             children: [
-                {
-                    path: '',
-                    component: ReadersInfo
-                },
                 {
                     path: 'list',
                     component: ListReaders
@@ -87,7 +82,12 @@ const router = new VueRouter({
                     path: 'list',
                     component: ListEditions
                 },
-            ] },
+                {
+                    path: 'find',
+                    component: FindEdition
+                },
+            ]
+        },
         { path: '/permissions', name: 'permissions', component: Permissions },
         { path: '/reader-logins', name: 'reader-logins', component: ReaderLogins },
         { path: '/publications', name: 'publications', component: Publications },

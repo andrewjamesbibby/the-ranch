@@ -11,6 +11,10 @@ html,body {
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .mb-10 {
   margin-bottom: 10px;
 }
@@ -43,6 +47,8 @@ html,body {
 #builder {
   border-right: 1px solid #DEDEDE;
   padding: 4vh 20px;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 #output {
