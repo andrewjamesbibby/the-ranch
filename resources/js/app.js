@@ -1,4 +1,4 @@
-
+window._ = require('lodash');
 window.axios = require('axios');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');

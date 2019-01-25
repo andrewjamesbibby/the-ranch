@@ -56,7 +56,7 @@
                     <header class="card-header">
                         <p class="card-header-title">
                             Response &nbsp;
-                            <span class="tag is-default is-medium">{{ lastRequest.statusCode }}</span>
+                            <span v-if="lastRequest.statusCode" v-html="statusCodeTag"></span>
                         </p>
                         <a href="#" class="card-header-icon" aria-label="copy" @click="copyResponse">
                             <span class="icon">
@@ -83,16 +83,21 @@
             CredentialsModal,
             mainNav
         },
-        data : function(){
-            return {
-            }
-        },
         computed : {
             loading : function () {
                 return this.$store.state.loading;
             },
             lastRequest : function() {
                 return this.$store.state.lastRequest;
+            },
+            statusCodeTag : function(){
+                if(_.includes([ 200, 201, 200 ], this.lastRequest.statusCode)){
+                    return `<span class="tag is-success is-medium">${ this.lastRequest.statusCode }</span>`;
+                }
+                if(_.includes([ 400, 401, 403, 404, 405, 429, 500 ], this.lastRequest.statusCode)){
+                    return `<span class="tag is-danger is-medium">${ this.lastRequest.statusCode }</span>`;
+                }
+                return `<span class="tag is-danger is-default">${ this.lastRequest.statusCode }</span>`;
             },
         },
         methods : {
@@ -102,6 +107,9 @@
             openCredentialsModal: function() {
                 this.$store.commit('toggleCredentialsModal', true);
             },
+            getClass : function(){
+                return 'ok';
+            }
         }
     }
 </script>
