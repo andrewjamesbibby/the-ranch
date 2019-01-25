@@ -32,9 +32,11 @@ const store = new Vuex.Store({
         },
         setKey(state, value) {
             this.state.credentials.key = value;
+            localStorage.setItem('publisherKey', value);
         },
         setSecret(state, value) {
             this.state.credentials.secret = value;
+            localStorage.setItem('publisherSecret', value);
         },
         toggleCredentialsModal(state, value) {
             this.state.credentials.modal = value;

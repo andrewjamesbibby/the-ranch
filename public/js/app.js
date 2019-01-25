@@ -2837,6 +2837,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  mounted: function mounted() {
+    var publisherKey = localStorage.getItem('publisherKey');
+    var publisherSecret = localStorage.getItem('publisherSecret');
+    this.$store.commit('setKey', publisherKey);
+    this.$store.commit('setSecret', publisherSecret);
+  },
   methods: {
     closeModal: function closeModal() {
       this.$store.commit('toggleCredentialsModal', false);
@@ -21078,9 +21084,11 @@ var store = new Vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setKey: function setKey(state, value) {
       this.state.credentials.key = value;
+      localStorage.setItem('publisherKey', value);
     },
     setSecret: function setSecret(state, value) {
       this.state.credentials.secret = value;
+      localStorage.setItem('publisherSecret', value);
     },
     toggleCredentialsModal: function toggleCredentialsModal(state, value) {
       this.state.credentials.modal = value;

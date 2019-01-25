@@ -54,6 +54,12 @@
                 }
             },
         },
+        mounted : function(){
+            let publisherKey = localStorage.getItem('publisherKey');
+            let publisherSecret = localStorage.getItem('publisherSecret');
+            this.$store.commit('setKey', publisherKey);
+            this.$store.commit('setSecret', publisherSecret);
+        },
         methods : {
             closeModal : function() {
                 this.$store.commit('toggleCredentialsModal', false);
