@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <main-layout>
         <div class="card mb-20">
             <header class="card-header">
                 <p class="card-header-title">List Readers</p>
@@ -46,30 +46,29 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main-layout>
 </template>
 
 <script>
     export default {
-        components: { },
         data : function(){
             return {
-                readerId : null,
+                readerId     : null,
                 emailAddress : '',
-                username : '',
-                firstName : '',
-                lastName : '',
-                nodeId : '',
+                username     : '',
+                firstName    : '',
+                lastName     : '',
+                nodeId       : '',
                 subscription : '',
             }
         },
         computed : {
-            loading : function () {
-                return this.$store.state.loading;
+            lastRequest : function() {
+                return this.$store.state.lastRequest;
             },
         },
         methods : {
-            submit: function () {
+            submit: function() {
                 var self = this;
                 self.$store.commit('startLoading');
 

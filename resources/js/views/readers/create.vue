@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <main-layout>
         <div class="card mb-20">
             <header class="card-header">
                 <p class="card-header-title">Create Reader</p>
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main-layout>
 </template>
 <script>
     export default {
@@ -53,11 +53,6 @@
                 lastName : '',
                 password : '',
             }
-        },
-        computed : {
-            loading : function () {
-                return this.$store.state.loading;
-            },
         },
         methods : {
             submit: function () {
