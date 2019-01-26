@@ -41,6 +41,7 @@ import Devices from './views/Devices'
 import Authentication from './views/Authentication'
 import SSOTokens from './views/SSOTokens'
 import TargetedNotifications from './views/TargetedNotifications'
+import History from './views/History'
 
 const router = new VueRouter({
    // mode: 'history',
@@ -97,6 +98,7 @@ const router = new VueRouter({
         { path: '/authentication', name: 'authentication', component: Authentication },
         { path: '/sso-tokens', name: 'sso-tokens', component: SSOTokens },
         { path: '/targeted-notifications', name: 'targeted-notifications', component: TargetedNotifications },
+        { path: '/history', name: 'history', component: History },
     ],
 });
 

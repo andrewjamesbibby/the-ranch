@@ -2,7 +2,7 @@
     <div>
         <credentialsModal></credentialsModal>
 
-        <div class="loading-window" v-if="loading"></div>
+        <div class="loading-overlay" v-if="loading"></div>
 
         <nav class="navbar has-shadow">
             <div class="navbar-brand">
@@ -19,27 +19,29 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
+                        <router-link class="button is-light" to="/history">
+                            <span><i class="fa fa-history"></i> History </span>
+                        </router-link>
                         <a class="button is-light" @click="openCredentialsModal">
                             <span><i class="fa fa-cog"></i> Settings </span>
                         </a>
                     </div>
                 </div>
             </div>
-
         </nav>
 
         <div class="columns">
             <mainNav></mainNav>
 
-            <div id ="builder" class="column is-3 is-fullheight">
+            <div id ="builder" class="column is-4 is-fullheight">
                 <router-view></router-view>
             </div>
 
-            <div id="output" class="column is-7">
+            <div id="output" class="column is-6">
                 <div class="request card mb-20">
                     <header class="card-header">
                         <p class="card-header-title">Raw</p>
-                        <a href="#" class="card-header-icon" aria-label="copy">
+                        <a href="#" class="card-header-icon" aria-label="copy" @click="copyToClipboard('requestRaw')">
                             <span class="icon">
                               <i class="far fa-copy" aria-hidden="true"></i>
                             </span>
@@ -47,6 +49,7 @@
                     </header>
                     <div class="card-content">
                         <div class="content">
+                            <input class="offscreen" type="text" id="requestRaw" :value="lastRequest.raw"></input>
                             <pre>{{ lastRequest.raw }}</pre>
                         </div>
                     </div>
@@ -58,7 +61,7 @@
                             Response &nbsp;
                             <span v-if="lastRequest.statusCode" v-html="statusCodeTag"></span>
                         </p>
-                        <a href="#" class="card-header-icon" aria-label="copy" @click="copyResponse">
+                        <a href="#" class="card-header-icon" aria-label="copy" @click="copyToClipboard('requestBody')">
                             <span class="icon">
                               <i class="far fa-copy" aria-hidden="true"></i>
                             </span>
@@ -66,6 +69,7 @@
                     </header>
                     <div class="card-content">
                         <div class="content">
+                            <input class="offscreen" type="text" id="requestBody" :value="lastRequest.body"></input>
                             <pre>{{ lastRequest.body }}</pre>
                         </div>
                     </div>
@@ -101,8 +105,13 @@
             },
         },
         methods : {
-            copyResponse : function(){
-                alert('ok');
+            copyToClipboard : function(element){
+                let copyText = document.getElementById(element);
+                copyText.select();
+                document.execCommand("copy");
+
+                /* Alert the copied text */
+                alert("Copied the text: " + copyText.value);
             },
             openCredentialsModal: function() {
                 this.$store.commit('toggleCredentialsModal', true);
@@ -113,3 +122,11 @@
         }
     }
 </script>
+<style scoped>
+    .offscreen {
+        opacity: 0;
+        position: absolute;
+        z-index: -9999;
+        pointer-events: none;
+    }
+</style>
