@@ -1,8 +1,8 @@
 <template>
     <main-layout>
-    <div class="tabs">
+    <div class="tabs single-use">
         <ul>
-            <li class="is-active"><a>List Readers</a></li>
+            <li><a>List Readers</a></li>
         </ul>
     </div>
     <form>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="field">
-            <p class="control">
+            <p class="control has-text-right">
                 <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
             </p>
         </div>

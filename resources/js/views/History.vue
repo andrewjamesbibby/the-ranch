@@ -1,8 +1,8 @@
 <template>
     <main-layout>
-        <div class="tabs">
+        <div class="tabs single-use">
             <ul>
-                <li class="is-active"><a>History</a></li>
+                <li><a>History</a></li>
             </ul>
         </div>
         <table class="table is-narrow is-fullwidth">
