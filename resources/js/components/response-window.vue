@@ -4,15 +4,15 @@
             <header class="card-header">
                 <p class="card-header-title">Raw</p>
                 <a href="#" class="card-header-icon" aria-label="copy" @click="copyToClipboard('requestRaw')">
-                        <span class="icon">
-                          <i class="far fa-copy" aria-hidden="true"></i>
-                        </span>
+                    <span class="icon">
+                      <i class="far fa-copy" aria-hidden="true"></i>
+                    </span>
                 </a>
             </header>
             <div class="card-content">
-                <div class="content">
-                    <input class="offscreen" type="text" id="requestRaw" :value="lastRequest.raw"></input>
-                    <pre>{{ lastRequest.raw }}</pre>
+                <div class="content" v-if="activeResponse">
+                    <input class="offscreen" type="text" id="requestRaw" :value="activeResponse.raw"></input>
+                    <pre>{{ activeResponse.raw }}</pre>
                 </div>
             </div>
         </div>
@@ -21,18 +21,18 @@
             <header class="card-header">
                 <p class="card-header-title">
                     Response &nbsp;
-                    <span v-if="lastRequest.statusCode" v-html="statusCodeTag"></span>
+                    <span v-if="activeResponse" v-html="statusCodeTag"></span>
                 </p>
                 <a href="#" class="card-header-icon" aria-label="copy" @click="copyToClipboard('requestBody')">
-                            <span class="icon">
-                              <i class="far fa-copy" aria-hidden="true"></i>
-                            </span>
+                    <span class="icon">
+                      <i class="far fa-copy" aria-hidden="true"></i>
+                    </span>
                 </a>
             </header>
             <div class="card-content">
-                <div class="content">
-                    <input class="offscreen" type="text" id="requestBody" :value="lastRequest.body"></input>
-                    <pre>{{ lastRequest.body }}</pre>
+                <div class="content" v-if="activeResponse">
+                    <input class="offscreen" type="text" id="requestBody" :value="activeResponse.body"></input>
+                    <pre>{{ activeResponse.body }}</pre>
                 </div>
             </div>
         </div>
@@ -42,17 +42,17 @@
 <script>
     export default {
         computed : {
-            lastRequest : function() {
-                return this.$store.state.lastRequest;
+            activeResponse : function(){
+                return this.$store.state.history[this.$store.state.activeResponseIndex];
             },
             statusCodeTag : function(){
-                if(_.includes([ 200, 201, 200 ], this.lastRequest.statusCode)){
-                    return `<span class="tag is-success is-medium">${ this.lastRequest.statusCode }</span>`;
+                if(_.includes([ 200, 201, 200 ], this.activeResponse.statusCode)){
+                    return `<span class="tag is-success is-medium">${ this.activeResponse.statusCode }</span>`;
                 }
-                if(_.includes([ 400, 401, 403, 404, 405, 429, 500 ], this.lastRequest.statusCode)){
-                    return `<span class="tag is-danger is-medium">${ this.lastRequest.statusCode }</span>`;
+                if(_.includes([ 400, 401, 403, 404, 405, 429, 500 ], this.activeResponse.statusCode)){
+                    return `<span class="tag is-danger is-medium">${ this.activeResponse.statusCode }</span>`;
                 }
-                return `<span class="tag is-danger is-default">${ this.lastRequest.statusCode }</span>`;
+                return `<span class="tag is-danger is-default">${ this.activeResponse.statusCode }</span>`;
             },
         },
         methods : {

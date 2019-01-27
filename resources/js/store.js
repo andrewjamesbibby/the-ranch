@@ -12,11 +12,8 @@ const store = new Vuex.Store({
             secret : '',
         },
         loading: false,
-        lastRequest: {
-            raw : null,
-            statusCode : null,
-            body : null,
-        },
+        history : [],
+        activeResponseIndex : 0,
     },
     getters: {
     },
@@ -28,7 +25,14 @@ const store = new Vuex.Store({
             this.state.loading = false;
         },
         setResponse(state, response) {
-           this.state.lastRequest = response;
+            this.state.history.unshift(response);
+            if(this.state.history.length > 50){
+                this.state.history.pop();
+            }
+            this.state.activeResponseIndex = 0;
+        },
+        setActiveResponseIndex(state, index){
+            this.state.activeResponseIndex = index;
         },
         setKey(state, value) {
             this.state.credentials.key = value;

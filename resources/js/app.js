@@ -1,5 +1,6 @@
 window._ = require('lodash');
 window.axios = require('axios');
+window.moment = require('moment');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -37,6 +38,8 @@ const router = new VueRouter({
         { path: '/readers/create', component: require('./views/readers/create.vue').default },
         { path: '/readers/update', component: require('./views/readers/update.vue').default },
         { path: '/readers/delete', component: require('./views/readers/delete.vue').default },
+
+        { path: '/history', component: require('./views/History.vue').default },
     ],
 });
 

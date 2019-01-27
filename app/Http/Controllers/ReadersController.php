@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Yudu\Publisher\Publisher;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ReadersController extends Controller
 {
@@ -23,6 +24,8 @@ class ReadersController extends Controller
         $results = $this->publisher->getReader($id);
 
         return [
+            'timestamp'  => Carbon::now()->toIso8601String(),
+            'action'     => "GET /readers/$id",
             'raw'        => $results->raw(),
             'statusCode' => $results->statusCode(),
             'body'       => $results->xmlString(),
@@ -41,6 +44,8 @@ class ReadersController extends Controller
         ]);
 
         return [
+            'timestamp'  => Carbon::now()->toIso8601String(),
+            'action'     => 'GET /readers',
             'raw'        => $results->raw(),
             'statusCode' => $results->statusCode(),
             'body'       => $results->xmlString(),
@@ -58,6 +63,8 @@ class ReadersController extends Controller
         ]);
 
         return [
+            'timestamp'  => Carbon::now()->toIso8601String(),
+            'action'     => 'POST /readers',
             'raw'        => $results->raw(),
             'statusCode' => $results->statusCode(),
             'body'       => $results->xmlString(),
@@ -75,17 +82,21 @@ class ReadersController extends Controller
         ]);
 
         return [
+            'timestamp'  => Carbon::now()->toIso8601String(),
+            'action'     => 'PUT /readers',
             'raw'        => $results->raw(),
             'statusCode' => $results->statusCode(),
             'body'       => $results->xmlString(),
         ];
     }
 
-    public function deleteReader($readerId){
+    public function deleteReader($id){
 
-        $results = $this->publisher->deleteReader($readerId);
+        $results = $this->publisher->deleteReader($id);
 
         return [
+            'timestamp'  => Carbon::now()->toIso8601String(),
+            'action'     => "DELETE /readers/{$id}",
             'raw'        => $results->raw(),
             'statusCode' => $results->statusCode(),
             'body'       => $results->xmlString(),
