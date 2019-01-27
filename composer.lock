@@ -3106,16 +3106,16 @@
         },
         {
             "name": "yudu/publisher",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/YUDUcreative/Publisher-REST-API-Library.git",
-                "reference": "f483a3223d14ed101092f7a5677746c3ef3188b5"
+                "reference": "e0ef3a272c8dd0db1856da890daf6664e57f01db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/YUDUcreative/Publisher-REST-API-Library/zipball/f483a3223d14ed101092f7a5677746c3ef3188b5",
-                "reference": "f483a3223d14ed101092f7a5677746c3ef3188b5",
+                "url": "https://api.github.com/repos/YUDUcreative/Publisher-REST-API-Library/zipball/e0ef3a272c8dd0db1856da890daf6664e57f01db",
+                "reference": "e0ef3a272c8dd0db1856da890daf6664e57f01db",
                 "shasum": ""
             },
             "require": {
@@ -3143,7 +3143,7 @@
                 }
             ],
             "description": "YUDU Publisher REST API Library - PHP",
-            "time": "2019-01-18T09:45:41+00:00"
+            "time": "2019-01-27T15:33:18+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

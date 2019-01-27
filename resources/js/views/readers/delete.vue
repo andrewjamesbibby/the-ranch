@@ -1,26 +1,22 @@
 <template>
     <main-layout>
-        <div class="card mb-20">
-            <header class="card-header">
-                <p class="card-header-title">Delete Reader</p>
-            </header>
-            <div class="card-content">
-                <div class="content">
-                    <form>
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <p class="control">
-                                <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
-                            </p>
-                        </div>
-                    </form>
+        <div class="tabs">
+            <ul>
+                <li class="is-active"><a>Update Reader</a></li>
+            </ul>
+        </div>
+        <form>
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
                 </div>
             </div>
-        </div>
+            <div class="field">
+                <p class="control">
+                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                </p>
+            </div>
+        </form>
     </main-layout>
 </template>
 <script>

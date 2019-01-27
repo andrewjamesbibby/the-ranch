@@ -10,6 +10,7 @@ const store = new Vuex.Store({
             modal : false,
             key : '',
             secret : '',
+            debug : true,
         },
         loading: false,
         history : [],

@@ -1,12 +1,11 @@
 <template>
     <main-layout>
-        <div class="card mb-20">
-            <header class="card-header">
-                <p class="card-header-title">Request History</p>
-            </header>
+        <div class="tabs">
+            <ul>
+                <li class="is-active"><a>History</a></li>
+            </ul>
         </div>
-
-        <table class="table is-narrow is-fullwidth is-bordered">
+        <table class="table is-narrow is-fullwidth">
             <thead>
             <tr>
                 <th>Time</th>
@@ -16,8 +15,8 @@
             </thead>
             <tbody v-for="(item, index) in history">
             <tr @click="showHistory(index)" v-bind:class="{ 'is-active' : historyRowActive(index) }">
-                <td>{{ getHumanDate(item.timestamp) }}</td>
-                <td>{{ item.action }}</td>
+                <td>{{ getHumanDate(item.request.query.timestamp) }}</td>
+                <td>{{ item.request.method }} /{{ item.request.resource }}</td>
                 <td v-html="statusCodeTag(item.statusCode)"></td>
             </tr>
             </tbody>
@@ -41,7 +40,7 @@
                 this.$store.commit('setActiveResponseIndex', index);
             },
             getHumanDate : function (timestamp){
-                return moment(timestamp).format("h:mm a");
+                return moment.unix(timestamp).format("h:mm a");
             },
             statusCodeTag : function(statusCode){
                 if(_.includes([ 200, 201, 200 ], statusCode)){
@@ -67,8 +66,11 @@
         cursor: pointer;
     }
 
-    tbody tr:hover, tr.is-active {
+    tr.is-active {
         background-color: #ececec;
     }
 
+    tbody tr:hover {
+        background-color: #dadada;
+    }
 </style>

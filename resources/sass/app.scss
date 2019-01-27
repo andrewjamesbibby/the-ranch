@@ -58,20 +58,12 @@ html,body {
   height: 100vh;
 }
 
-#output .request {
-  height: 44vh;
+#output .card {
+  height: 80vh;
 }
 
-#output .request pre {
-   height:34vh;
- }
-
-#output .response{
-  height: 44vh;
-}
-
-#output .response pre {
-  height:34vh;
+#output .card pre {
+  height:70vh;
 }
 
 .loading-overlay {

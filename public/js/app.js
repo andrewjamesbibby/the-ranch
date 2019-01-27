@@ -2936,21 +2936,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      activeTab: 'response'
+    };
+  },
   computed: {
     activeResponse: function activeResponse() {
       return this.$store.state.history[this.$store.state.activeResponseIndex];
     },
     statusCodeTag: function statusCodeTag() {
-      if (_.includes([200, 201, 200], this.activeResponse.statusCode)) {
-        return "<span class=\"tag is-success is-medium\">".concat(this.activeResponse.statusCode, "</span>");
+      if (_.includes([200, 201, 204], this.activeResponse.statusCode)) {
+        return "<span class=\"tag is-success is-small\">".concat(this.activeResponse.statusCode, "</span>");
       }
 
       if (_.includes([400, 401, 403, 404, 405, 429, 500], this.activeResponse.statusCode)) {
-        return "<span class=\"tag is-danger is-medium\">".concat(this.activeResponse.statusCode, "</span>");
+        return "<span class=\"tag is-danger is-small\">".concat(this.activeResponse.statusCode, "</span>");
       }
 
-      return "<span class=\"tag is-danger is-default\">".concat(this.activeResponse.statusCode, "</span>");
+      return "<span class=\"tag is-light is-small\">".concat(this.activeResponse.statusCode, "</span>");
     }
   },
   methods: {
@@ -2958,9 +2978,12 @@ __webpack_require__.r(__webpack_exports__);
       var copyText = document.getElementById(element);
       copyText.select();
       document.execCommand("copy");
-      /* Alert the copied text */
-
-      alert("Copied the text: " + copyText.value);
+    },
+    tabActive: function tabActive(index) {
+      return index == this.activeTabIndex;
+    },
+    switchtab: function switchtab() {
+      console.log();
     }
   }
 });
@@ -3177,7 +3200,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "history",
   computed: {
@@ -3193,7 +3215,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.commit('setActiveResponseIndex', index);
     },
     getHumanDate: function getHumanDate(timestamp) {
-      return moment(timestamp).format("h:mm a");
+      return moment.unix(timestamp).format("h:mm a");
     },
     statusCodeTag: function statusCodeTag(statusCode) {
       if (_.includes([200, 201, 200], statusCode)) {
@@ -3259,10 +3281,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -3371,10 +3389,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3436,10 +3450,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3479,10 +3489,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -3632,11 +3638,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3687,7 +3688,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.offscreen[data-v-40e77d81] {\n    opacity: 0;\n    position: absolute;\n    z-index: -9999;\n    pointer-events: none;\n}\n", ""]);
+exports.push([module.i, "\n.tab-pane[data-v-40e77d81] {\n    display: none;\n}\n.tab-pane.is-active[data-v-40e77d81] {\n    display: block;\n}\n.offscreen[data-v-40e77d81] {\n    opacity: 0;\n    position: absolute;\n    z-index: -9999;\n    pointer-events: none;\n}\n", ""]);
 
 // exports
 
@@ -3706,7 +3707,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.table td[data-v-301d0ec5], th[data-v-301d0ec5] {\n    text-align: center;\n}\n.table tr[data-v-301d0ec5] {\n    cursor: pointer;\n}\ntbody tr[data-v-301d0ec5]:hover, tr.is-active[data-v-301d0ec5] {\n    background-color: #ececec;\n}\n\n", ""]);
+exports.push([module.i, "\n.table td[data-v-301d0ec5], th[data-v-301d0ec5] {\n    text-align: center;\n}\n.table tr[data-v-301d0ec5] {\n    cursor: pointer;\n}\ntr.is-active[data-v-301d0ec5] {\n    background-color: #ececec;\n}\ntbody tr[data-v-301d0ec5]:hover {\n    background-color: #dadada;\n}\n", ""]);
 
 // exports
 
@@ -40059,77 +40060,131 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "column is-6", attrs: { id: "output" } }, [
-    _c("div", { staticClass: "request card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("Raw")]),
-        _vm._v(" "),
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
         _c(
-          "a",
+          "li",
           {
-            staticClass: "card-header-icon",
-            attrs: { href: "#", "aria-label": "copy" },
+            class: [_vm.activeTab === "response" ? "is-active" : ""],
             on: {
               click: function($event) {
-                _vm.copyToClipboard("requestRaw")
+                _vm.activeTab = "response"
               }
             }
           },
-          [_vm._m(0)]
+          [_c("a", [_vm._v("Response")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            class: [_vm.activeTab === "request" ? "is-active" : ""],
+            on: {
+              click: function($event) {
+                _vm.activeTab = "request"
+              }
+            }
+          },
+          [_c("a", [_vm._v("Request")])]
         )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _vm.activeResponse
-          ? _c("div", { staticClass: "content" }, [
-              _c("input", {
-                staticClass: "offscreen",
-                attrs: { type: "text", id: "requestRaw" },
-                domProps: { value: _vm.activeResponse.raw }
-              }),
-              _vm._v(" "),
-              _c("pre", [_vm._v(_vm._s(_vm.activeResponse.raw))])
-            ])
-          : _vm._e()
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "response card" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [
-          _vm._v("\n                Response  \n                "),
-          _vm.activeResponse
-            ? _c("span", { domProps: { innerHTML: _vm._s(_vm.statusCodeTag) } })
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "card-header-icon",
-            attrs: { href: "#", "aria-label": "copy" },
-            on: {
-              click: function($event) {
-                _vm.copyToClipboard("requestBody")
-              }
-            }
-          },
-          [_vm._m(1)]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _vm.activeResponse
-          ? _c("div", { staticClass: "content" }, [
-              _c("input", {
-                staticClass: "offscreen",
-                attrs: { type: "text", id: "requestBody" },
-                domProps: { value: _vm.activeResponse.body }
-              }),
+    _c("div", { staticClass: "tab-content" }, [
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane",
+          class: [_vm.activeTab === "response" ? "is-active" : ""]
+        },
+        [
+          _c("div", { staticClass: "card" }, [
+            _c("header", { staticClass: "card-header" }, [
+              _c("p", { staticClass: "card-header-title" }, [
+                _vm._v(
+                  "\n                        Response  \n                        "
+                ),
+                _vm.activeResponse
+                  ? _c("span", {
+                      domProps: { innerHTML: _vm._s(_vm.statusCodeTag) }
+                    })
+                  : _vm._e()
+              ]),
               _vm._v(" "),
-              _c("pre", [_vm._v(_vm._s(_vm.activeResponse.body))])
+              _c(
+                "a",
+                {
+                  staticClass: "card-header-icon",
+                  attrs: { href: "#", "aria-label": "copy" },
+                  on: {
+                    click: function($event) {
+                      _vm.copyToClipboard("requestBody")
+                    }
+                  }
+                },
+                [_vm._m(0)]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-content" }, [
+              _vm.activeResponse
+                ? _c("div", { staticClass: "content" }, [
+                    _c("input", {
+                      staticClass: "offscreen",
+                      attrs: { type: "text", id: "requestBody" },
+                      domProps: { value: _vm.activeResponse.body }
+                    }),
+                    _vm._v(" "),
+                    _c("pre", [_vm._v(_vm._s(_vm.activeResponse.body))])
+                  ])
+                : _vm._e()
             ])
-          : _vm._e()
-      ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane",
+          class: [_vm.activeTab === "request" ? "is-active" : ""]
+        },
+        [
+          _c("div", { staticClass: "card" }, [
+            _c("header", { staticClass: "card-header" }, [
+              _c("p", { staticClass: "card-header-title" }, [_vm._v("Raw")]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "card-header-icon",
+                  attrs: { href: "#", "aria-label": "copy" },
+                  on: {
+                    click: function($event) {
+                      _vm.copyToClipboard("requestRaw")
+                    }
+                  }
+                },
+                [_vm._m(1)]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-content" }, [
+              _vm.activeResponse
+                ? _c("div", { staticClass: "content" }, [
+                    _c("input", {
+                      staticClass: "offscreen",
+                      attrs: { type: "text", id: "requestRaw" },
+                      domProps: { value: _vm.activeResponse.request.raw }
+                    }),
+                    _vm._v(" "),
+                    _c("pre", [_vm._v(_vm._s(_vm.activeResponse.request.raw))])
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -40410,17 +40465,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main-layout", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [
-          _vm._v("Request History")
-        ])
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
+        _c("li", { staticClass: "is-active" }, [_c("a", [_vm._v("History")])])
       ])
     ]),
     _vm._v(" "),
     _c(
       "table",
-      { staticClass: "table is-narrow is-fullwidth is-bordered" },
+      { staticClass: "table is-narrow is-fullwidth" },
       [
         _c("thead", [
           _c("tr", [
@@ -40445,9 +40498,17 @@ var render = function() {
                 }
               },
               [
-                _c("td", [_vm._v(_vm._s(_vm.getHumanDate(item.timestamp)))]),
+                _c("td", [
+                  _vm._v(_vm._s(_vm.getHumanDate(item.request.query.timestamp)))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.action))]),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(item.request.method) +
+                      " /" +
+                      _vm._s(item.request.resource)
+                  )
+                ]),
                 _vm._v(" "),
                 _c("td", {
                   domProps: {
@@ -40521,158 +40582,156 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main-layout", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("Create Reader")])
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
+        _c("li", { staticClass: "is-active" }, [
+          _c("a", [_vm._v("Create Reader")])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.username,
+                expression: "username"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Username" },
+            domProps: { value: _vm.username },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.username = $event.target.value
+              }
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("form", [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.username,
-                      expression: "username"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Username" },
-                  domProps: { value: _vm.username },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.username = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.emailAddress,
-                      expression: "emailAddress"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Email" },
-                  domProps: { value: _vm.emailAddress },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.emailAddress = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.firstName,
-                      expression: "firstName"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "First Name" },
-                  domProps: { value: _vm.firstName },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.firstName = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.lastName,
-                      expression: "lastName"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Last Name" },
-                  domProps: { value: _vm.lastName },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.lastName = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Password" },
-                  domProps: { value: _vm.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("p", { staticClass: "control" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button is-primary",
-                    class: { "is-loading": _vm.loading },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._v(" Submit ")]
-                )
-              ])
-            ])
-          ])
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.emailAddress,
+                expression: "emailAddress"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Email" },
+            domProps: { value: _vm.emailAddress },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.emailAddress = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.firstName,
+                expression: "firstName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "First Name" },
+            domProps: { value: _vm.firstName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.firstName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.lastName,
+                expression: "lastName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Last Name" },
+            domProps: { value: _vm.lastName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.lastName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.password,
+                expression: "password"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Password" },
+            domProps: { value: _vm.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.password = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("p", { staticClass: "control" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-primary",
+              class: { "is-loading": _vm.loading },
+              on: { click: _vm.submit }
+            },
+            [_vm._v(" Submit ")]
+          )
         ])
       ])
     ])
@@ -40701,54 +40760,52 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main-layout", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("Delete Reader")])
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
+        _c("li", { staticClass: "is-active" }, [
+          _c("a", [_vm._v("Update Reader")])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.readerId,
+                expression: "readerId"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Reader ID" },
+            domProps: { value: _vm.readerId },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.readerId = $event.target.value
+              }
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("form", [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.readerId,
-                      expression: "readerId"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Reader ID" },
-                  domProps: { value: _vm.readerId },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.readerId = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("p", { staticClass: "control" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button is-primary",
-                    class: { "is-loading": _vm.loading },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._v(" Submit ")]
-                )
-              ])
-            ])
-          ])
+      _c("div", { staticClass: "field" }, [
+        _c("p", { staticClass: "control" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-primary",
+              class: { "is-loading": _vm.loading },
+              on: { click: _vm.submit }
+            },
+            [_vm._v(" Submit ")]
+          )
         ])
       ])
     ])
@@ -40777,54 +40834,52 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main-layout", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("Find Reader")])
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
+        _c("li", { staticClass: "is-active" }, [
+          _c("a", [_vm._v("List Readers")])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.readerId,
+                expression: "readerId"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Reader ID" },
+            domProps: { value: _vm.readerId },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.readerId = $event.target.value
+              }
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("form", [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.readerId,
-                      expression: "readerId"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Reader ID" },
-                  domProps: { value: _vm.readerId },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.readerId = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("p", { staticClass: "control" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button is-primary",
-                    class: { "is-loading": _vm.loading },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._v(" Submit ")]
-                )
-              ])
-            ])
-          ])
+      _c("div", { staticClass: "field" }, [
+        _c("p", { staticClass: "control" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-primary",
+              class: { "is-loading": _vm.loading },
+              on: { click: _vm.submit }
+            },
+            [_vm._v(" Submit ")]
+          )
         ])
       ])
     ])
@@ -40853,190 +40908,182 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main-layout", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("List Readers")])
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
+        _c("li", { staticClass: "is-active" }, [
+          _c("a", [_vm._v("List Readers")])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.emailAddress,
+                expression: "emailAddress"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Email Address" },
+            domProps: { value: _vm.emailAddress },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.emailAddress = $event.target.value
+              }
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("form", [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.emailAddress,
-                      expression: "emailAddress"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Filter By: Email Address"
-                  },
-                  domProps: { value: _vm.emailAddress },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.emailAddress = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.username,
-                      expression: "username"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Filter By: Username" },
-                  domProps: { value: _vm.username },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.username = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.firstName,
-                      expression: "firstName"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Filter By: First Name" },
-                  domProps: { value: _vm.firstName },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.firstName = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.lastName,
-                      expression: "lastName"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Filter By: Last Name" },
-                  domProps: { value: _vm.lastName },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.lastName = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.nodeId,
-                      expression: "nodeId"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Filter By: Node Id" },
-                  domProps: { value: _vm.nodeId },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.nodeId = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.subscription,
-                      expression: "subscription"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Filter By: Subscription"
-                  },
-                  domProps: { value: _vm.subscription },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.subscription = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("p", { staticClass: "control" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button is-primary",
-                    class: { "is-loading": _vm.loading },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._v(" Submit ")]
-                )
-              ])
-            ])
-          ])
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.username,
+                expression: "username"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Username" },
+            domProps: { value: _vm.username },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.username = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.firstName,
+                expression: "firstName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: First Name" },
+            domProps: { value: _vm.firstName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.firstName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.lastName,
+                expression: "lastName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Last Name" },
+            domProps: { value: _vm.lastName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.lastName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nodeId,
+                expression: "nodeId"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Node Id" },
+            domProps: { value: _vm.nodeId },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nodeId = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.subscription,
+                expression: "subscription"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Filter By: Subscription" },
+            domProps: { value: _vm.subscription },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.subscription = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("p", { staticClass: "control" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-primary",
+              class: { "is-loading": _vm.loading },
+              on: { click: _vm.submit }
+            },
+            [_vm._v(" Submit ")]
+          )
         ])
       ])
     ])
@@ -41065,184 +41112,182 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main-layout", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c("p", { staticClass: "card-header-title" }, [_vm._v("Update Reader")])
+    _c("div", { staticClass: "tabs" }, [
+      _c("ul", [
+        _c("li", { staticClass: "is-active" }, [
+          _c("a", [_vm._v("Update Reader")])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("form", { attrs: { id: "updateForm" } }, [
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.readerId,
+                expression: "readerId"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Reader ID" },
+            domProps: { value: _vm.readerId },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.readerId = $event.target.value
+              }
+            }
+          })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("form", { attrs: { id: "updateForm" } }, [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.readerId,
-                      expression: "readerId"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Reader ID" },
-                  domProps: { value: _vm.readerId },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.readerId = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.username,
-                      expression: "username"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Username" },
-                  domProps: { value: _vm.username },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.username = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.emailAddress,
-                      expression: "emailAddress"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Email" },
-                  domProps: { value: _vm.emailAddress },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.emailAddress = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.firstName,
-                      expression: "firstName"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "First Name" },
-                  domProps: { value: _vm.firstName },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.firstName = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.lastName,
-                      expression: "lastName"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Last Name" },
-                  domProps: { value: _vm.lastName },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.lastName = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "password" },
-                  domProps: { value: _vm.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("p", { staticClass: "control" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "button is-primary",
-                    class: { "is-loading": _vm.loading },
-                    on: { click: _vm.submit }
-                  },
-                  [_vm._v(" Submit ")]
-                )
-              ])
-            ])
-          ])
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.username,
+                expression: "username"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Username" },
+            domProps: { value: _vm.username },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.username = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.emailAddress,
+                expression: "emailAddress"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Email" },
+            domProps: { value: _vm.emailAddress },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.emailAddress = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.firstName,
+                expression: "firstName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "First Name" },
+            domProps: { value: _vm.firstName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.firstName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.lastName,
+                expression: "lastName"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "Last Name" },
+            domProps: { value: _vm.lastName },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.lastName = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.password,
+                expression: "password"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "password" },
+            domProps: { value: _vm.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.password = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("p", { staticClass: "control" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-primary",
+              class: { "is-loading": _vm.loading },
+              on: { click: _vm.submit }
+            },
+            [_vm._v(" Submit ")]
+          )
         ])
       ])
     ])
@@ -55648,7 +55693,8 @@ var store = new Vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     credentials: {
       modal: false,
       key: '',
-      secret: ''
+      secret: '',
+      debug: true
     },
     loading: false,
     history: [],

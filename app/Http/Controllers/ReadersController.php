@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Yudu\Publisher\Publisher;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class ReadersController extends Controller
 {
@@ -24,11 +23,9 @@ class ReadersController extends Controller
         $results = $this->publisher->getReader($id);
 
         return [
-            'timestamp'  => Carbon::now()->toIso8601String(),
-            'action'     => "GET /readers/$id",
-            'raw'        => $results->raw(),
-            'statusCode' => $results->statusCode(),
-            'body'       => $results->xmlString(),
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
         ];
     }
 
@@ -44,11 +41,9 @@ class ReadersController extends Controller
         ]);
 
         return [
-            'timestamp'  => Carbon::now()->toIso8601String(),
-            'action'     => 'GET /readers',
-            'raw'        => $results->raw(),
-            'statusCode' => $results->statusCode(),
-            'body'       => $results->xmlString(),
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
         ];
     }
 
@@ -63,30 +58,38 @@ class ReadersController extends Controller
         ]);
 
         return [
-            'timestamp'  => Carbon::now()->toIso8601String(),
-            'action'     => 'POST /readers',
-            'raw'        => $results->raw(),
-            'statusCode' => $results->statusCode(),
-            'body'       => $results->xmlString(),
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
         ];
     }
 
     public function updateReader(Request $request, $readerId){
 
-        $results = $this->publisher->updateReader($readerId , [
-            'username'      => $request->username,
-            'emailAddress'  => $request->emailAddress,
-            'firstName'     => $request->firstName,
-            'lastName'      => $request->lastName,
-            'password'      => $request->password,
-        ]);
+        $fields = [];
+
+        if($request->username){
+            $fields['username'] = $request->username;
+        }
+        if($request->emailAddress){
+            $fields['emailAddress'] = $request->emailAddress;
+        }
+        if($request->firstName){
+            $fields['firstName'] = $request->firstName;
+        }
+        if($request->lastName){
+            $fields['lastName'] = $request->lastName;
+        }
+        if($request->password){
+            $fields['password'] = $request->password;
+        }
+
+        $results = $this->publisher->updateReader($readerId , $fields);
 
         return [
-            'timestamp'  => Carbon::now()->toIso8601String(),
-            'action'     => 'PUT /readers',
-            'raw'        => $results->raw(),
-            'statusCode' => $results->statusCode(),
-            'body'       => $results->xmlString(),
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
         ];
     }
 
@@ -95,11 +98,9 @@ class ReadersController extends Controller
         $results = $this->publisher->deleteReader($id);
 
         return [
-            'timestamp'  => Carbon::now()->toIso8601String(),
-            'action'     => "DELETE /readers/{$id}",
-            'raw'        => $results->raw(),
-            'statusCode' => $results->statusCode(),
-            'body'       => $results->xmlString(),
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
         ];
     }
 }
