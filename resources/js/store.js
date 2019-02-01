@@ -38,10 +38,12 @@ const store = new Vuex.Store({
         setKey(state, value) {
             this.state.credentials.key = value;
             localStorage.setItem('publisherKey', value);
+            window.axios.defaults.headers.common['Publisher-Key'] = value;
         },
         setSecret(state, value) {
             this.state.credentials.secret = value;
             localStorage.setItem('publisherSecret', value);
+            window.axios.defaults.headers.common['Publisher-Secret'] = value;
         },
         toggleCredentialsModal(state, value) {
             this.state.credentials.modal = value;

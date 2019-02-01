@@ -39,6 +39,9 @@ const router = new VueRouter({
         { path: '/readers/update', component: require('./views/readers/update.vue').default },
         { path: '/readers/delete', component: require('./views/readers/delete.vue').default },
 
+        { path: '/editions/list', component: require('./views/editions/list.vue').default },
+        { path: '/editions/find', component: require('./views/editions/find.vue').default },
+
         { path: '/history', component: require('./views/History.vue').default },
     ],
 });

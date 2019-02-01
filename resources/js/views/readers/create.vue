@@ -5,35 +5,35 @@
                 <li><a>Create Reader</a></li>
             </ul>
         </div>
-        <form>
+        <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Username" v-model="username">
+                    <input class="input" type="text" placeholder="Username" v-model="form.username">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Email" v-model="emailAddress">
+                    <input class="input" type="text" placeholder="Email" v-model="form.emailAddress">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="First Name" v-model="firstName">
+                    <input class="input" type="text" placeholder="First Name" v-model="form.firstName">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Last Name" v-model="lastName">
+                    <input class="input" type="text" placeholder="Last Name" v-model="form.lastName">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Password" v-model="password">
+                    <input class="input" type="text" placeholder="Password" v-model="form.password">
                 </div>
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                    <button class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
                 </p>
             </div>
         </form>
@@ -43,37 +43,30 @@
     export default {
         data : function(){
             return {
-                username : '',
-                emailAddress : '',
-                firstName : '',
-                lastName : '',
-                password : '',
+                form : {
+                    username     : '',
+                    emailAddress : '',
+                    firstName    : '',
+                    lastName     : '',
+                    password     : '',
+                }
             }
         },
         methods : {
             submit: function () {
-                var self = this;
-                self.$store.commit('startLoading');
+                this.$store.commit('startLoading');
 
-                axios.post('/api/readers', {
-                    publisherKey    : self.$store.state.credentials.key,
-                    publisherSecret : self.$store.state.credentials.secret,
-                    username        : self.username,
-                    emailAddress    : self.emailAddress,
-                    firstName       : self.firstName,
-                    lastName        : self.lastName,
-                    password        : self.password,
+                axios.post('/api/readers', this.form)
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
                 })
-                .then(function(response) {
-                    self.$store.commit('setResponse' , response.data);
-                })
-                .catch(function(error) {
+                .catch((error) => {
                     if(error.response){
                         alert(error.response.data.message)
                     }
                 })
-                .then(function() {
-                    self.$store.commit('stopLoading');
+                .then(() => {
+                    this.$store.commit('stopLoading');
                 });
             }
         }

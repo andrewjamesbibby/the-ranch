@@ -2,10 +2,10 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>Update Reader</a></li>
+                <li><a>Delete Reader</a></li>
             </ul>
         </div>
-        <form>
+        <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
                     <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
@@ -28,25 +28,19 @@
         },
         methods : {
             submit: function () {
-                var self = this;
-                self.$store.commit('startLoading');
+                this.$store.commit('startLoading');
 
-                axios.delete('/api/readers/' + self.readerId, {
-                    params : {
-                        publisherKey    : self.$store.state.credentials.key,
-                        publisherSecret : self.$store.state.credentials.secret,
-                    },
+                axios.delete('/api/readers/' + this.readerId )
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
                 })
-                .then(function(response) {
-                    self.$store.commit('setResponse' , response.data);
-                })
-                .catch(function(error) {
+                .catch((error) => {
                     if(error.response){
                         alert(error.response.data.message)
                     }
                 })
-                .then(function() {
-                    self.$store.commit('stopLoading');
+                .then(() => {
+                    this.$store.commit('stopLoading');
                 });
             }
         }

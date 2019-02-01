@@ -5,7 +5,7 @@
                 <li><a>Find Reader</a></li>
             </ul>
         </div>
-        <form>
+        <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
                     <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
@@ -13,7 +13,7 @@
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                    <button type="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
                 </p>
             </div>
         </form>
@@ -29,25 +29,19 @@
         },
         methods : {
             submit: function () {
-                var self = this;
-                self.$store.commit('startLoading');
+                this.$store.commit('startLoading');
 
-                axios.get('/api/readers/' + self.readerId, {
-                    params: {
-                        publisherKey    : self.$store.state.credentials.key,
-                        publisherSecret : self.$store.state.credentials.secret,
-                    },
+                axios.get('/api/readers/' + this.readerId)
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
                 })
-                .then(function(response) {
-                    self.$store.commit('setResponse' , response.data);
-                })
-                .catch(function(error) {
+                .catch((error) => {
                     if(error.response){
                         alert(error.response.data.message)
                     }
                 })
-                .then(function() {
-                    self.$store.commit('stopLoading');
+                .then(() => {
+                    this.$store.commit('stopLoading');
                 });
             }
         }

@@ -43,7 +43,7 @@
                 return moment.unix(timestamp).format("h:mm a");
             },
             statusCodeTag : function(statusCode){
-                if(_.includes([ 200, 201, 200 ], statusCode)){
+                if(_.includes([ 200, 201, 204 ], statusCode)){
                     return `<span class="tag is-success is-small">${ statusCode }</span>`;
                 }
                 if(_.includes([ 400, 401, 403, 404, 405, 429, 500 ], statusCode)){

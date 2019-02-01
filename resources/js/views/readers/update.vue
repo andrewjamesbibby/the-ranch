@@ -5,7 +5,7 @@
                 <li><a>Update Reader</a></li>
             </ul>
         </div>
-        <form id="updateForm">
+        <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
                     <input class="input" type="text" placeholder="Reader ID" v-model="readerId">
@@ -13,32 +13,32 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Username" v-model="username">
+                    <input class="input" type="text" placeholder="Username" v-model="form.username">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Email" v-model="emailAddress">
+                    <input class="input" type="text" placeholder="Email" v-model="form.emailAddress">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="First Name" v-model="firstName">
+                    <input class="input" type="text" placeholder="First Name" v-model="form.firstName">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Last Name" v-model="lastName">
+                    <input class="input" type="text" placeholder="Last Name" v-model="form.lastName">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="password" v-model="password">
+                    <input class="input" type="text" placeholder="password" v-model="form.password">
                 </div>
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                    <button type="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
                 </p>
             </div>
         </form>
@@ -49,37 +49,30 @@
         data : function(){
             return {
                 readerId : null,
-                username : '',
-                emailAddress : '',
-                firstName : '',
-                lastName : '',
-                password : '',
+                form : {
+                    username     : '',
+                    emailAddress : '',
+                    firstName    : '',
+                    lastName     : '',
+                    password     : '',
+                }
             }
         },
         methods : {
             submit: function () {
-                var self = this;
-                self.$store.commit('startLoading');
+                this.$store.commit('startLoading');
 
-                axios.put('/api/readers/' + self.readerId, {
-                    publisherKey    : self.$store.state.credentials.key,
-                    publisherSecret : self.$store.state.credentials.secret,
-                    username        : self.username,
-                    emailAddress    : self.emailAddress,
-                    firstName       : self.firstName,
-                    lastName        : self.lastName,
-                    password        : self.password,
+                axios.put('/api/readers/' + this.readerId, this.form)
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
                 })
-                .then(function(response) {
-                    self.$store.commit('setResponse' , response.data);
-                })
-                .catch(function(error) {
+                .catch((error) => {
                     if(error.response){
                         alert(error.response.data.message)
                     }
                 })
-                .then(function() {
-                    self.$store.commit('stopLoading');
+                .then(() => {
+                    this.$store.commit('stopLoading');
                 });
             }
         }

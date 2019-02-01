@@ -5,40 +5,40 @@
             <li><a>List Readers</a></li>
         </ul>
     </div>
-    <form>
+    <form @submit.prevent="submit">
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="Filter By: Email Address" v-model="emailAddress">
+                <input class="input" type="text" placeholder="Filter By: Email Address" v-model="form.emailAddress">
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="Filter By: Username" v-model="username">
+                <input class="input" type="text" placeholder="Filter By: Username" v-model="form.username">
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="Filter By: First Name" v-model="firstName">
+                <input class="input" type="text" placeholder="Filter By: First Name" v-model="form.firstName">
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="Filter By: Last Name" v-model="lastName">
+                <input class="input" type="text" placeholder="Filter By: Last Name" v-model="form.lastName">
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="Filter By: Node Id" v-model="nodeId">
+                <input class="input" type="text" placeholder="Filter By: Node Id" v-model="form.nodeId">
             </div>
         </div>
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="Filter By: Subscription" v-model="subscription">
+                <input class="input" type="text" placeholder="Filter By: Subscription" v-model="form.subscription">
             </div>
         </div>
         <div class="field">
             <p class="control has-text-right">
-                <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                <button type="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
             </p>
         </div>
     </form>
@@ -49,47 +49,30 @@
     export default {
         data : function(){
             return {
-                readerId     : null,
-                emailAddress : '',
-                username     : '',
-                firstName    : '',
-                lastName     : '',
-                nodeId       : '',
-                subscription : '',
+                form : {
+                    emailAddress    : '',
+                    username        : '',
+                    firstName       : '',
+                    lastName        : '',
+                    nodeId          : '',
+                    subscription    : '',
+                }
             }
-        },
-        computed : {
-            lastRequest : function() {
-                return this.$store.state.lastRequest;
-            },
         },
         methods : {
             submit: function() {
-                var self = this;
-                self.$store.commit('startLoading');
-
-                axios.get('/api/readers', {
-                    params : {
-                        publisherKey    : self.$store.state.credentials.key,
-                        publisherSecret : self.$store.state.credentials.secret,
-                        emailAddress    : self.emailAddress,
-                        username        : self.username,
-                        firstName       : self.firstName,
-                        lastName        : self.lastName,
-                        nodeId          : self.nodeId,
-                        subscription    : self.subscription,
-                    }
+                this.$store.commit('startLoading');
+                axios.get('/api/readers', { params : this.form })
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
                 })
-                .then(function(response) {
-                    self.$store.commit('setResponse' , response.data);
-                })
-                .catch(function(error) {
+                .catch((error) => {
                     if(error.response){
                         alert(error.response.data.message)
                     }
                 })
-                .then(function() {
-                    self.$store.commit('stopLoading');
+                .then(() => {
+                    this.$store.commit('stopLoading');
                 });
             }
         }

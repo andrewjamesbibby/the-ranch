@@ -11,11 +11,14 @@ class ReadersController extends Controller
 
     public function __construct(Request $request)
     {
-        if(!$request->publisherKey || !$request->publisherSecret){
+        $key = $request->headers->get('Publisher-Key');
+        $secret = $request->headers->get('Publisher-Secret');
+
+        if(! $key || ! $secret){
             abort(403, 'Missing credentials - Publisher Key AND Publisher Secret must both be specified');
         }
 
-        $this->publisher = new Publisher($request->publisherKey, $request->publisherSecret, [ 'debug' => true ]);
+        $this->publisher = new Publisher($key, $secret, [ 'debug' => true ]);
     }
 
     public function getReader($id){
