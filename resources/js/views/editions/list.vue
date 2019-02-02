@@ -5,95 +5,54 @@
                 <li><a>List Editions</a></li>
             </ul>
         </div>
-        <form>
+        <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Name" v-model="name">
+                    <input class="input" type="text" placeholder="Filter By: Name" v-model="form.name">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Subscription" v-model="subscription">
+                    <input class="input" type="text" placeholder="Filter By: Subscription" v-model="form.subscription">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Published Before" v-model="published_before">
+                    <input class="datepicker input" type="date" placeholder="Filter By: Published Before" >
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Published After" v-model="published_after">
+                    <input class="datepicker input" type="date" placeholder="Filter By: Published After">
                 </div>
             </div>
             <div class="field">
-                <label class="label">iOS Published</label>
-                <div class="control">
-                    <label class="radio">
-                        <input type="radio" name="iOSPublished" checked>
-                        True
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="iOSPublished">
-                        False
-                    </label>
-                </div>
+                <input id="iOSPublished" type="checkbox" name="iOSPublished" class="switch is-rounded is-success" v-model="form.iOSPublished" :checked="form.iOSPublished">
+                <label for="iOSPublished"><strong>iOS Published</strong></label>
             </div>
-            <div class="field">
-                <label class="label">Android Published</label>
-                <div class="control">
-                    <label class="radio">
-                        <input type="radio" name="androidPublished" checked>
-                        True
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="androidPublished">
-                        False
-                    </label>
-                </div>
+
+            <div class="field is-unselectable">
+                <input id="androidPublished" type="checkbox" name="androidPublished" class="switch is-rounded is-success" v-model="form.androidPublished" :checked="form.androidPublished">
+                <label for="androidPublished"><strong>Android Published</strong></label>
             </div>
-            <div class="field">
-                <label class="label">HTML Published</label>
-                <div class="control">
-                    <label class="radio">
-                        <input type="radio" name="htmlPublished" checked>
-                        True
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="htmlPublished">
-                        False
-                    </label>
-                </div>
+
+            <div class="field is-unselectable">
+                <input id="htmlPublished" type="checkbox" name="htmlPublished" class="switch is-rounded is-success" v-model="form.htmlPublished" :checked="form.htmlPublished">
+                <label for="htmlPublished"><strong>HTML Published</strong></label>
             </div>
-            <div class="field">
-                <label class="label">Web Published</label>
-                <div class="control">
-                    <label class="radio">
-                        <input type="radio" name="webPublished" checked>
-                        True
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="webPublished">
-                        False
-                    </label>
-                </div>
+
+            <div class="field is-unselectable">
+                <input id="webPublished" type="checkbox" name="webPublished" class="switch is-rounded is-success" v-model="form.webPublished" :checked="form.webPublished">
+                <label for="webPublished"><strong>Web Published</strong></label>
             </div>
-            <div class="field">
-                <label class="label">Flash Published</label>
-                <div class="control">
-                    <label class="radio">
-                        <input type="radio" name="flashPublished" checked>
-                        True
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="flashPublished">
-                        False
-                    </label>
-                </div>
+
+            <div class="field is-unselectable">
+                <input id="flashPublished" type="checkbox" name="flashPublished" class="switch is-rounded is-success" v-model="form.flashPublished" :checked="form.flashPublished">
+                <label for="flashPublished"><strong>Flash Published</strong></label>
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
+                    <button class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
                 </p>
             </div>
         </form>
@@ -104,35 +63,40 @@
     export default {
         data : function(){
             return {
-                editionId      : '',
-                name           : '',
-                publishedDate  : '',
+                form : {
+                    name             : '',
+                    subscription     : '',
+                    published_before : null,
+                    published_after  : null,
+                    iOSPublished     : true,
+                    androidPublished : true,
+                    htmlPublished    : true,
+                    webPublished     : false,
+                    flashPublished   : false,
+                }
             }
+        },
+        mounted : function(){
+            bulmaCalendar.attach('.datepicker', {});
         },
         methods : {
             submit: function() {
-                var self = this;
-                self.$store.commit('startLoading');
+
+                this.$store.commit('startLoading');
 
                 axios.get('/api/editions', {
-                    params : {
-                        publisherKey    : self.$store.state.credentials.key,
-                        publisherSecret : self.$store.state.credentials.secret,
-                        editionId       : self.editionId,
-                        name            : self.name,
-                        publishedDate   : self.publishedDate,
-                    }
+                    params : this.form
                 })
-                .then(function(response) {
-                    self.$store.commit('setResponse' , response.data);
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
                 })
-                .catch(function(error) {
+                .catch((error) => {
                     if(error.response){
-                        alert(error.response.data.message)
+                        this.toast('error', error.response.data.message);
                     }
                 })
-                .then(function() {
-                    self.$store.commit('stopLoading');
+                .then(() => {
+                    this.$store.commit('stopLoading');
                 });
             }
         }

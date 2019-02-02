@@ -3,7 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Bulma
-@import 'bulma';
+@import '~bulma/bulma';
+@import '~bulma-extensions/bulma-calendar/dist/css/bulma-calendar.sass';
+@import '~bulma-extensions/bulma-switch/dist/css/bulma-switch.sass';
 
 // Partials
 @import './partials/toast';
@@ -86,13 +88,5 @@ html,body {
   color: #4a4a4a;
 }
 
-#footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5vh;
-    background-color: #d0d0d0;
-}
 
 

@@ -5,7 +5,11 @@
                 <li><a>History</a></li>
             </ul>
         </div>
-        <table class="table is-narrow is-fullwidth">
+        <div class="notification" v-if="! history.length">
+            There is no request history - start making requests and they will be shown on this page.
+        </div>
+
+        <table class="table is-narrow is-fullwidth" v-if="history.length">
             <thead>
             <tr>
                 <th>Time</th>

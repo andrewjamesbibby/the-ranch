@@ -2,6 +2,9 @@ window._ = require('lodash');
 window.axios = require('axios');
 window.moment = require('moment');
 
+// Bulma extensions
+window.bulmaCalendar = require('bulma-extensions/bulma-calendar/dist/js/bulma-calendar.js');
+
 let token = document.head.querySelector('meta[name="csrf-token"]');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
