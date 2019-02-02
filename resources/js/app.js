@@ -8,24 +8,32 @@ window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 
 import Vue from 'vue'
 
+// Set up Notifications
+import Toasted from 'vue-toasted';
+Vue.use(Toasted, {
+    theme: "toasted-primary",
+    position: "bottom-center",
+    duration : 2000
+});
+
 // Set up router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // Import global mixins
 import Loading from './mixins/loading';
+import Toast from './mixins/toast';
 Vue.mixin(Loading);
+Vue.mixin(Toast);
 
 // Import vuex store
 import store from './store';
-
 
 // Entry point component
 import App from './views/App'
 
 // Global components.
 Vue.component('main-layout', require('./views/layouts/mainLayout.vue').default);
-
 
 // Router
 const router = new VueRouter({

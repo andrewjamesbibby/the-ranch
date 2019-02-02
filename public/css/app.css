@@ -11172,6 +11172,38 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+/*  Toast colors  */
+
+.toasted.toasted-primary {
+  font-weight: bold !important;
+}
+
+.toasted-container .warning {
+  background-color: #ffc861 !important;
+}
+
+.toasted-container .error {
+  background-color: #e21b1b !important;
+}
+
+.toasted-container .info {
+  background-color: #61cbff !important;
+}
+
+.toasted-container .success {
+  background-color: #5bc34f !important;
+}
+
+/* Margin / Padding helpers */
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
 html,
 body {
   font-family: "Open Sans", serif;
@@ -11184,14 +11216,6 @@ body {
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-.mb-10 {
-  margin-bottom: 10px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
 }
 
 #main-nav {

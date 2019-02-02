@@ -28,7 +28,7 @@
             }
         },
         methods : {
-            submit: function () {
+            submit: function() {
                 this.$store.commit('startLoading');
 
                 axios.get('/api/readers/' + this.readerId)
@@ -37,7 +37,7 @@
                 })
                 .catch((error) => {
                     if(error.response){
-                        alert(error.response.data.message)
+                        this.toast('error', error.response.data.message);
                     }
                 })
                 .then(() => {

@@ -36,7 +36,7 @@
                 })
                 .catch((error) => {
                     if(error.response){
-                        alert(error.response.data.message)
+                        this.toast('error', error.response.data.message);
                     }
                 })
                 .then(() => {

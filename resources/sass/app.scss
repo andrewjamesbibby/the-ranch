@@ -1,9 +1,15 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Bulma
 @import 'bulma';
 
+// Partials
+@import './partials/toast';
+@import './partials/spacers';
 
+// Main
 html,body {
   font-family: 'Open Sans', serif;
   font-size: 14px;
@@ -15,14 +21,6 @@ html,body {
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-.mb-10 {
-  margin-bottom: 10px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
 }
 
 #main-nav {
@@ -96,3 +94,5 @@ html,body {
     padding: 1.5vh;
     background-color: #d0d0d0;
 }
+
+
