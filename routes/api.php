@@ -15,4 +15,7 @@ Route::post('/permissions', 'PermissionsController@createPermission');
 Route::put('/permissions/{id}', 'PermissionsController@updatePermission');
 Route::delete('/permissions/{id}', 'PermissionsController@deletePermission');
 
+Route::get('/reader-logins', 'ReaderLoginsController@getReaderLogins');
+Route::get('/reader-logins/{id}', 'ReaderLoginsController@getReaderLogin');
+
 Route::post('/targeted-notifications', 'TargetedNotificationsController@send');

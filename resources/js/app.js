@@ -58,6 +58,9 @@ const router = new VueRouter({
         { path: '/permissions/update', component: require('./views/permissions/update.vue').default },
         { path: '/permissions/delete', component: require('./views/permissions/delete.vue').default },
 
+        { path: '/reader-logins/list', component: require('./views/logins/list.vue').default },
+        { path: '/reader-logins/find', component: require('./views/logins/find.vue').default },
+
         { path: '/history', component: require('./views/History.vue').default },
     ],
 });
