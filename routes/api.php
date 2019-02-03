@@ -21,4 +21,7 @@ Route::get('/reader-logins/{id}', 'ReaderLoginsController@getReaderLogin');
 Route::get('/publications', 'PublicationsController@getPublications');
 Route::get('/publications/{id}', 'PublicationsController@getPublication');
 
+Route::get('/subscriptions', 'SubscriptionsController@getSubscriptions');
+Route::get('/subscriptions/{id}', 'SubscriptionsController@getSubscription');
+
 Route::post('/targeted-notifications', 'TargetedNotificationsController@send');

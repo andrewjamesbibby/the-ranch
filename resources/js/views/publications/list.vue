@@ -30,9 +30,7 @@
 </template>
 
 <script>
-    import Datepicker from 'vuejs-datepicker';
     export default {
-        components : { Datepicker },
         data : function(){
             return {
                 form: {

@@ -38,8 +38,9 @@ Vue.component('main-layout', require('./views/layouts/mainLayout.vue').default);
 
 // Router
 const router = new VueRouter({
-   // mode: 'history',
+    mode: 'history',
     linkActiveClass: 'is-active',
+    saveScrollPosition: true,
     routes: [
         { path: '/', redirect: '/readers/list' },
 
@@ -63,6 +64,9 @@ const router = new VueRouter({
 
         { path: '/publications/list', component: require('./views/publications/list.vue').default },
         { path: '/publications/find', component: require('./views/publications/find.vue').default },
+
+        { path: '/subscriptions/list', component: require('./views/subscriptions/list.vue').default },
+        { path: '/subscriptions/find', component: require('./views/subscriptions/find.vue').default },
 
         { path: '/history', component: require('./views/History.vue').default },
     ],
