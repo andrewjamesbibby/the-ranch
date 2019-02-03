@@ -18,4 +18,7 @@ Route::delete('/permissions/{id}', 'PermissionsController@deletePermission');
 Route::get('/reader-logins', 'ReaderLoginsController@getReaderLogins');
 Route::get('/reader-logins/{id}', 'ReaderLoginsController@getReaderLogin');
 
+Route::get('/publications', 'PublicationsController@getPublications');
+Route::get('/publications/{id}', 'PublicationsController@getPublication');
+
 Route::post('/targeted-notifications', 'TargetedNotificationsController@send');

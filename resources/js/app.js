@@ -61,6 +61,9 @@ const router = new VueRouter({
         { path: '/reader-logins/list', component: require('./views/logins/list.vue').default },
         { path: '/reader-logins/find', component: require('./views/logins/find.vue').default },
 
+        { path: '/publications/list', component: require('./views/publications/list.vue').default },
+        { path: '/publications/find', component: require('./views/publications/find.vue').default },
+
         { path: '/history', component: require('./views/History.vue').default },
     ],
 });
