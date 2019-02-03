@@ -2,13 +2,18 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>Find Edition</a></li>
+                <li><a>Update Permission</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Edition Id" v-model="editionId">
+                    <input class="input" type="text" placeholder="Permission ID" v-model="permissionId">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <datepicker input-class="input" placeholder="Expiry Date" v-model="form.expiry_date"></datepicker>
                 </div>
             </div>
             <div class="field">
@@ -19,22 +24,23 @@
         </form>
     </main-layout>
 </template>
-
 <script>
+    import Datepicker from 'vuejs-datepicker';
     export default {
+        components : { Datepicker },
         data : function(){
             return {
-                editionId : null,
+                permissionId : null,
+                form : {
+                    expiry_date : null,
+                }
             }
         },
-        mounted : function(){
-
-        },
         methods : {
-            submit: function() {
+            submit: function () {
                 this.$store.commit('startLoading');
 
-                axios.get('/api/editions/' + this.editionId)
+                axios.put('/api/permissions/' + this.permissionId, this.form)
                 .then((response) => {
                     this.$store.commit('setResponse' , response.data);
                 })
@@ -47,6 +53,6 @@
                     this.$store.commit('stopLoading');
                 });
             }
-        },
+        }
     }
 </script>

@@ -2,28 +2,28 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>List Editions</a></li>
+                <li><a>Create Permission</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Name" v-model="form.name">
+                    <input class="input" type="text" placeholder="Reader ID" v-model="form.reader_id">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Subscription" v-model="form.subscription">
+                    <input class="input" type="text" placeholder="Edition ID" v-model="form.edition_id">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <datepicker input-class="input" placeholder="Filter By: Published Before" v-model="form.published_before"></datepicker>
-                 </div>
+                    <datepicker input-class="input" placeholder="Creation Date" v-model="form.creation_date"></datepicker>
+                </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <datepicker input-class="input" placeholder="Filter By: Published After" v-model="form.published_after"></datepicker>
+                    <datepicker input-class="input" placeholder="Expiry Date" v-model="form.expiry_date"></datepicker>
                 </div>
             </div>
             <div class="field">
@@ -34,7 +34,6 @@
         </form>
     </main-layout>
 </template>
-
 <script>
     import Datepicker from 'vuejs-datepicker';
     export default {
@@ -42,20 +41,18 @@
         data : function(){
             return {
                 form : {
-                    name             : '',
-                    subscription     : '',
-                    published_before : null,
-                    published_after  : null,
+                    reader_id     : null,
+                    edition_id    : null,
+                    creation_date : null,
+                    expiry_date   : null,
                 }
             }
         },
         methods : {
-            submit: function() {
+            submit: function () {
                 this.$store.commit('startLoading');
 
-                axios.get('/api/editions', {
-                    params : this.form
-                })
+                axios.post('/api/permissions', this.form)
                 .then((response) => {
                     this.$store.commit('setResponse' , response.data);
                 })
@@ -68,6 +65,6 @@
                     this.$store.commit('stopLoading');
                 });
             }
-        },
+        }
     }
 </script>

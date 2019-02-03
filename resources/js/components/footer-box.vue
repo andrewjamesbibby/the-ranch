@@ -2,7 +2,7 @@
     <footer id="footer" class="footer">
         <div class="container">
             <div class="content has-text-centered">
-                <span><strong>NEVERLAND</strong> by ajb </span>
+                <span><strong class="glow">NEVERLAND</strong> by ajb </span>
                 <span>
                     <a target="_blank" href="https://github.com/andrewjamesbibby/neverland-rest-api-playground">
                         <i class="fab fa-github-square fa-2x"></i>

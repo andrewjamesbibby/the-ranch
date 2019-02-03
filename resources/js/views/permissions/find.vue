@@ -2,18 +2,18 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>Find Edition</a></li>
+                <li><a>List Permissions</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Edition Id" v-model="editionId">
+                    <input class="input" type="text" placeholder="Filter By: Permission ID" v-model="form.permission_id">
                 </div>
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <button type="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
+                    <button class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
                 </p>
             </div>
         </form>
@@ -24,17 +24,16 @@
     export default {
         data : function(){
             return {
-                editionId : null,
+                form : {
+                    permission_id : '',
+                }
             }
-        },
-        mounted : function(){
-
         },
         methods : {
             submit: function() {
                 this.$store.commit('startLoading');
 
-                axios.get('/api/editions/' + this.editionId)
+                axios.get('/api/permissions/' + this.form.permission_id)
                 .then((response) => {
                     this.$store.commit('setResponse' , response.data);
                 })

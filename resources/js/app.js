@@ -2,8 +2,6 @@ window._ = require('lodash');
 window.axios = require('axios');
 window.moment = require('moment');
 
-// Bulma extensions
-window.bulmaCalendar = require('bulma-extensions/bulma-calendar/dist/js/bulma-calendar.js');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -44,6 +42,7 @@ const router = new VueRouter({
     linkActiveClass: 'is-active',
     routes: [
         { path: '/', redirect: '/readers/list' },
+
         { path: '/readers/list', component: require('./views/readers/list.vue').default },
         { path: '/readers/find', component: require('./views/readers/find.vue').default },
         { path: '/readers/create', component: require('./views/readers/create.vue').default },
@@ -52,6 +51,12 @@ const router = new VueRouter({
 
         { path: '/editions/list', component: require('./views/editions/list.vue').default },
         { path: '/editions/find', component: require('./views/editions/find.vue').default },
+
+        { path: '/permissions/list', component: require('./views/permissions/list.vue').default },
+        { path: '/permissions/find', component: require('./views/permissions/find.vue').default },
+        { path: '/permissions/create', component: require('./views/permissions/create.vue').default },
+        { path: '/permissions/update', component: require('./views/permissions/update.vue').default },
+        { path: '/permissions/delete', component: require('./views/permissions/delete.vue').default },
 
         { path: '/history', component: require('./views/History.vue').default },
     ],

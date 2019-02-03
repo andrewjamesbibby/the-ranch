@@ -2,28 +2,33 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>List Editions</a></li>
+                <li><a>List Permissions</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Name" v-model="form.name">
+                    <input class="input" type="text" placeholder="Filter By: Permission ID" v-model="form.permission_id">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Subscription" v-model="form.subscription">
+                    <input class="input" type="text" placeholder="Filter By: Reader ID" v-model="form.reader_id">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <datepicker input-class="input" placeholder="Filter By: Published Before" v-model="form.published_before"></datepicker>
-                 </div>
+                    <input class="input" type="text" placeholder="Filter By: Edition ID" v-model="form.edition_id">
+                </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <datepicker input-class="input" placeholder="Filter By: Published After" v-model="form.published_after"></datepicker>
+                    <datepicker input-class="input" placeholder="Filter By: Creation Date" v-model="form.creation_date"></datepicker>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <datepicker input-class="input" placeholder="Filter By: Expiry Date" v-model="form.expiry_date"></datepicker>
                 </div>
             </div>
             <div class="field">
@@ -42,10 +47,11 @@
         data : function(){
             return {
                 form : {
-                    name             : '',
-                    subscription     : '',
-                    published_before : null,
-                    published_after  : null,
+                    permission_id : '',
+                    reader_id     : '',
+                    edition_id    : '',
+                    creation_date : null,
+                    expiry_date   : null,
                 }
             }
         },
@@ -53,7 +59,7 @@
             submit: function() {
                 this.$store.commit('startLoading');
 
-                axios.get('/api/editions', {
+                axios.get('/api/permissions', {
                     params : this.form
                 })
                 .then((response) => {

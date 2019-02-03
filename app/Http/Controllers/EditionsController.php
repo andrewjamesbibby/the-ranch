@@ -11,20 +11,35 @@ class EditionsController extends Controller
 
     public function __construct(Request $request)
     {
-        if(!$request->publisherKey || !$request->publisherSecret){
+        $key = $request->headers->get('Publisher-Key');
+        $secret = $request->headers->get('Publisher-Secret');
+
+        if(! $key || ! $secret){
             abort(403, 'Missing credentials - Publisher Key AND Publisher Secret must both be specified');
         }
 
-        $this->publisher = new Publisher($request->publisherKey, $request->publisherSecret, [ 'debug' => true ]);
+        $this->publisher = new Publisher($key, $secret, [ 'debug' => true ]);
     }
 
     public function getEditions(Request $request){
 
         $results = $this->publisher->getEditions([
-            'id'            => $request->get('editionId'),
-            'name'          => $request->get('name'),
-            'publishedDate' => $request->get('publishedDate'),
+            'name'                 => $request->get('name'),
+            'subscription'         => $request->get('subscription'),
+            'publishedDate_before' => $request->get('published_before'),
+            'publishedDate_after'  => $request->get('published_after'),
         ]);
+
+        return [
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
+        ];
+    }
+
+    public function getEdition($editionId) {
+
+        $results = $this->publisher->getEdition($editionId);
 
         return [
             'request'     => $results->request(),
