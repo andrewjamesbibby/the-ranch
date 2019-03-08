@@ -2,7 +2,7 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>Create Permission</a></li>
+                <li><a>Create Subscription Period</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
@@ -13,12 +13,12 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Edition ID" v-model="form.edition">
+                    <input class="input" type="text" placeholder="Subscription ID" v-model="form.subscription">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
-                    <datepicker input-class="input" placeholder="Creation Date" v-model="form.creationDate"></datepicker>
+                    <datepicker input-class="input" placeholder="Start Date" v-model="form.startDate"></datepicker>
                 </div>
             </div>
             <div class="field">
@@ -41,30 +41,29 @@
         data : function(){
             return {
                 form : {
-                    reader     : '',
-                    edition    : '',
-                    creationDate : '',
-                    expiryDate   : '',
+                    reader : '',
+                    subscription : '',
+                    startDate : '',
+                    expiryDate : '',
                 }
             }
         },
         methods : {
-            submit: function () {
-                this.$store.commit('startLoading');
-
-                axios.post('/api/permissions', this.filtered)
-                .then((response) => {
-                    this.$store.commit('setResponse' , response.data);
-                })
-                .catch((error) => {
-                    if(error.response){
-                        this.toast('error', error.response.data.message);
-                    }
-                })
-                .then(() => {
-                    this.$store.commit('stopLoading');
-                });
-            }
+        submit: function () {
+            this.$store.commit('startLoading');
+            axios.post('/api/subscription-periods', this.filtered)
+            .then((response) => {
+                this.$store.commit('setResponse' , response.data);
+            })
+            .catch((error) => {
+                if(error.response){
+                    this.toast('error', error.response.data.message);
+                }
+            })
+            .then(() => {
+                this.$store.commit('stopLoading');
+            });
         }
+    }
     }
 </script>

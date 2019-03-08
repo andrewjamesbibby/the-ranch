@@ -64,7 +64,7 @@
         methods : {
             submit: function() {
                 this.$store.commit('startLoading');
-                axios.get('/api/reader-logins', { params : this.form })
+                axios.get('/api/reader-logins', { params : this.filtered })
                     .then((response) => {
                         this.$store.commit('setResponse' , response.data);
                     })

@@ -24,4 +24,10 @@ Route::get('/publications/{id}', 'PublicationsController@getPublication');
 Route::get('/subscriptions', 'SubscriptionsController@getSubscriptions');
 Route::get('/subscriptions/{id}', 'SubscriptionsController@getSubscription');
 
+Route::get('/subscription-periods', 'SubscriptionPeriodsController@getSubscriptionPeriods');
+Route::get('/subscription-periods/{id}', 'SubscriptionPeriodsController@getSubscriptionPeriod');
+Route::post('/subscription-periods', 'SubscriptionPeriodsController@createSubscriptionPeriod');
+Route::put('/subscription-periods/{id}', 'SubscriptionPeriodsController@updateSubscriptionPeriod');
+Route::delete('/subscription-periods/{id}', 'SubscriptionPeriodsController@deleteSubscriptionPeriod');
+
 Route::post('/targeted-notifications', 'TargetedNotificationsController@send');

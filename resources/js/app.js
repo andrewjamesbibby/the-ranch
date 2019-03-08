@@ -2,7 +2,6 @@ window._ = require('lodash');
 window.axios = require('axios');
 window.moment = require('moment');
 
-
 let token = document.head.querySelector('meta[name="csrf-token"]');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
@@ -24,8 +23,10 @@ Vue.use(VueRouter)
 // Import global mixins
 import Loading from './mixins/loading';
 import Toast from './mixins/toast';
+import Filtered from './mixins/filteredForm';
 Vue.mixin(Loading);
 Vue.mixin(Toast);
+Vue.mixin(Filtered);
 
 // Import vuex store
 import store from './store';
@@ -67,6 +68,12 @@ const router = new VueRouter({
 
         { path: '/subscriptions/list', component: require('./views/subscriptions/list.vue').default },
         { path: '/subscriptions/find', component: require('./views/subscriptions/find.vue').default },
+
+        { path: '/subscription-periods/list', component: require('./views/subscriptionPeriods/list.vue').default },
+        { path: '/subscription-periods/find', component: require('./views/subscriptionPeriods/find.vue').default },
+        { path: '/subscription-periods/create', component: require('./views/subscriptionPeriods/create.vue').default },
+        { path: '/subscription-periods/update', component: require('./views/subscriptionPeriods/update.vue').default },
+        { path: '/subscription-periods/delete', component: require('./views/subscriptionPeriods/delete.vue').default },
 
         { path: '/history', component: require('./views/History.vue').default },
     ],

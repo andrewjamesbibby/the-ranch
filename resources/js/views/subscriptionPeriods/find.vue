@@ -2,13 +2,13 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>List Publications</a></li>
+                <li><a>Find Subscription Period</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Name" v-model="form.name">
+                    <input class="input" type="text" placeholder="Subscription ID" v-model="subscriptionId">
                 </div>
             </div>
             <div class="field">
@@ -24,27 +24,26 @@
     export default {
         data : function(){
             return {
-                form: {
-                    name : '',
-                }
+                id : null,
             }
         },
         methods : {
             submit: function() {
                 this.$store.commit('startLoading');
-                axios.get('/api/publications', { params : this.form })
-                    .then((response) => {
-                        this.$store.commit('setResponse' , response.data);
-                    })
-                    .catch((error) => {
-                        if(error.response){
-                            this.toast('error', error.response.data.message);
-                        }
-                    })
-                    .then(() => {
-                        this.$store.commit('stopLoading');
-                    });
+
+                axios.get('/api/subscription-periods/' + this.subscriptionId)
+                .then((response) => {
+                    this.$store.commit('setResponse' , response.data);
+                })
+                .catch((error) => {
+                    if(error.response){
+                        this.toast('error', error.response.data.message);
+                    }
+                })
+                .then(() => {
+                    this.$store.commit('stopLoading');
+                });
             }
-        }
+        },
     }
 </script>

@@ -4,7 +4,7 @@ import Vuex from 'Vuex';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    strict: true,
+    strict: process.env.NODE_ENV !== 'production',
     state: {
         credentials : {
             modal : false,

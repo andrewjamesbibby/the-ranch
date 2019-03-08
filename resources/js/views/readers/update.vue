@@ -38,7 +38,8 @@
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <button type="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
+                    <button type="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit
+                    </button>
                 </p>
             </div>
         </form>
@@ -46,34 +47,34 @@
 </template>
 <script>
     export default {
-        data : function(){
+        data: function () {
             return {
-                readerId : null,
-                form : {
-                    username     : '',
-                    emailAddress : '',
-                    firstName    : '',
-                    lastName     : '',
-                    password     : '',
+                readerId: null,
+                form: {
+                    username: '',
+                    emailAddress: '',
+                    firstName: '',
+                    lastName: '',
+                    password: '',
                 }
             }
         },
-        methods : {
-            submit: function () {
+        methods: {
+            submit() {
                 this.$store.commit('startLoading');
 
-                axios.put('/api/readers/' + this.readerId, this.form)
-                .then((response) => {
-                    this.$store.commit('setResponse' , response.data);
-                })
-                .catch((error) => {
-                    if(error.response){
-                        this.toast('error', error.response.data.message);
-                    }
-                })
-                .then(() => {
-                    this.$store.commit('stopLoading');
-                });
+                axios.put('/api/readers/' + this.readerId, this.filtered)
+                    .then((response) => {
+                        this.$store.commit('setResponse', response.data);
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            this.toast('error', error.response.data.message);
+                        }
+                    })
+                    .then(() => {
+                        this.$store.commit('stopLoading');
+                    });
             }
         }
     }

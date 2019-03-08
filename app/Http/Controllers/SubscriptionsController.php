@@ -32,15 +32,7 @@ class SubscriptionsController extends Controller
 
     public function getSubscriptions(Request $request){
 
-        $results = $this->publisher->getSubscriptions([
-            'title'            => $request->title,
-            'onDeviceTitle'    => $request->onDeviceTitle,
-            'disabled'         => $request->disabled,
-            'subscriptionType' => $request->subscriptionType,
-            'node'             => $request->node,
-            'reader'           => $request->reader,
-            'edition'          => $request->edition,
-        ]);
+        $results = $this->publisher->getSubscriptions($request->all());
 
         return [
             'request'     => $results->request(),

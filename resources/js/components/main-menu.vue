@@ -4,8 +4,8 @@
             <li>
                 <p class="menu-label"><span class="icon"><i class="fa fa-book-reader"></i></span>Readers</p>
                 <ul>
-                    <router-link tag="li" to="/readers/list"><a href="">List Readers</a></router-link>
-                    <router-link tag="li" to="/readers/find"><a href="">Find Reader</a></router-link>
+                    <router-link tag="li" to="/readers/list"><a href="#">List Readers</a></router-link>
+                    <router-link tag="li" to="/readers/find"><a href="#">Find Reader</a></router-link>
                     <router-link tag="li" to="/readers/create"><a href="">Create Reader</a></router-link>
                     <router-link tag="li" to="/readers/update"><a href="">Update Reader</a></router-link>
                     <router-link tag="li" to="/readers/delete"><a href="">Delete</a></router-link>

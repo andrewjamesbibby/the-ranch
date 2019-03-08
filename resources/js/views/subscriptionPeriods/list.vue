@@ -2,28 +2,13 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>List Subscriptions</a></li>
+                <li><a>List Subscription Periods</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Title" v-model="form.title">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Device Title" v-model="form.onDeviceTitle">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Subscription Type" v-model="form.subscriptionType">
-                </div>
-            </div>
-            <div class="field">
-                <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Node" v-model="form.node">
+                    <input class="input" type="text" placeholder="Filter By: ID" v-model="form.id">
                 </div>
             </div>
             <div class="field">
@@ -33,12 +18,18 @@
             </div>
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Filter By: Ediiton" v-model="form.edition">
+                    <input class="input" type="text" placeholder="Filter By: Subscription" v-model="form.subscription">
                 </div>
             </div>
-            <div class="field is-unselectable">
-                <input id="isDisabled" type="checkbox" class="switch is-rounded is-success" v-model="form.disabled" :checked="form.disabled">
-                <label for="isDisabled"><strong>Disabled</strong></label>
+            <div class="field">
+                <div class="control">
+                    <datepicker input-class="input" placeholder="Filter By: Start Date" v-model="form.startDate"></datepicker>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <datepicker input-class="input" placeholder="Filter By: Expiry Date" v-model="form.expiryDate"></datepicker>
+                </div>
             </div>
             <div class="field">
                 <p class="control has-text-right">
@@ -50,24 +41,24 @@
 </template>
 
 <script>
+    import Datepicker from 'vuejs-datepicker';
     export default {
+        components : { Datepicker },
         data : function(){
             return {
                 form: {
-                    title : '',
-                    onDeviceTitle : '',
-                    disabled : false,
-                    subscriptionType : '',
-                    node : '',
+                    id : '',
                     reader : '',
-                    edition : '',
+                    subscription : '',
+                    startDate : '',
+                    expiryDate : '',
                 }
             }
         },
         methods : {
             submit: function() {
                 this.$store.commit('startLoading');
-                axios.get('/api/subscriptions', { params : this.filtered })
+                axios.get('/api/subscription-periods', { params : this.filtered })
                     .then((response) => {
                         this.$store.commit('setResponse' , response.data);
                     })

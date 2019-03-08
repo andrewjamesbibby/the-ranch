@@ -23,12 +23,7 @@ class EditionsController extends Controller
 
     public function getEditions(Request $request){
 
-        $results = $this->publisher->getEditions([
-            'name'                 => $request->get('name'),
-            'subscription'         => $request->get('subscription'),
-            'publishedDate_before' => $request->get('published_before'),
-            'publishedDate_after'  => $request->get('published_after'),
-        ]);
+        $results = $this->publisher->getEditions($request->all());
 
         return [
             'request'     => $results->request(),

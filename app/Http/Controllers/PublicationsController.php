@@ -22,9 +22,7 @@ class PublicationsController extends Controller
     public function getPublications(Request $request)
     {
         $results = $this->publisher->getPublications([
-            'name'           => $request->get('name'),
-            'iDeviceEnabled' => $request->get('iDeviceEnabled'),
-            'androidEnabled' => $request->get('androidEnabled'),
+            'name' => $request->get('name'),
         ]);
 
         return [

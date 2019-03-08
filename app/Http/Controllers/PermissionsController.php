@@ -21,13 +21,7 @@ class PermissionsController extends Controller
 
     public function getPermissions(Request $request){
 
-        $results = $this->publisher->getPermissions([
-            'id'           => $request->get('permission_id'),
-            'reader'       => $request->get('reader_id'),
-            'edition'      => $request->get('edition_id'),
-            'creationDate' => $request->get('creation_date'),
-            'expiryDate'   => $request->get('expiry_date'),
-        ]);
+        $results = $this->publisher->getPermissions($request->all());
 
         return [
             'request'     => $results->request(),
@@ -49,12 +43,7 @@ class PermissionsController extends Controller
 
     public function createPermission(Request $request){
 
-        $results = $this->publisher->createPermission([
-            'reader'       => $request->reader_id,
-            'edition'      => $request->edition_id,
-            'creationDate' => $request->creation_date,
-            'expiryDate'   => $request->expiry_date,
-        ]);
+        $results = $this->publisher->createPermission($request->all());
 
         return [
             'request'     => $results->request(),

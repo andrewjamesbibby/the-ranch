@@ -2,38 +2,35 @@
     <main-layout>
         <div class="tabs single-use">
             <ul>
-                <li><a>List Permissions</a></li>
+                <li><a>Delete Subscription Period</a></li>
             </ul>
         </div>
         <form @submit.prevent="submit">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="Permission ID" v-model="form.permission_id">
+                    <input class="input" type="text" placeholder="Permission ID" v-model="id">
                 </div>
             </div>
             <div class="field">
                 <p class="control has-text-right">
-                    <button class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </button>
+                    <a @click="submit" class="button is-primary" v-bind:class="{ 'is-loading': loading }"> Submit </a>
                 </p>
             </div>
         </form>
     </main-layout>
 </template>
-
 <script>
     export default {
         data : function(){
             return {
-                form : {
-                    permission_id : '',
-                }
+                id : null,
             }
         },
         methods : {
-            submit: function() {
+            submit: function () {
                 this.$store.commit('startLoading');
 
-                axios.get('/api/permissions/' + this.form.permission_id)
+                axios.delete('/api/subscription-periods/' + this.id )
                 .then((response) => {
                     this.$store.commit('setResponse' , response.data);
                 })
@@ -46,6 +43,6 @@
                     this.$store.commit('stopLoading');
                 });
             }
-        },
+        }
     }
 </script>

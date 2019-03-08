@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Yudu\Publisher\Publisher;
 use Illuminate\Http\Request;
 
-class ReadersController extends Controller
+class SubscriptionPeriodsController extends Controller
 {
-    private $publisher;
-
     public function __construct(Request $request)
     {
         $key = $request->headers->get('Publisher-Key');
@@ -21,27 +19,9 @@ class ReadersController extends Controller
         $this->publisher = new Publisher($key, $secret, [ 'debug' => true ]);
     }
 
-    public function getReader($id){
-
-        $results = $this->publisher->getReader($id);
-
-        return [
-            'request'     => $results->request(),
-            'statusCode'  => $results->statusCode(),
-            'body'        => $results->xmlString(),
-        ];
-    }
-
-    public function getReaders(Request $request){
-
-        $results = $this->publisher->getReaders([
-            'emailAddress' =>  $request->get('emailAddress'),
-            'username'     =>  $request->get('username'),
-            'firstName'    =>  $request->get('firstName'),
-            'lastName'     =>  $request->get('lastName'),
-            'nodeId'       =>  $request->get('nodeId'),
-            'subscription' =>  $request->get('subscription'),
-        ]);
+    public function getSubscriptionPeriods(Request $request)
+    {
+        $results = $this->publisher->getSubscriptionPeriods($request->all());
 
         return [
             'request'     => $results->request(),
@@ -50,15 +30,9 @@ class ReadersController extends Controller
         ];
     }
 
-    public function createReader(Request $request){
-
-        $results = $this->publisher->createReader([
-            'username'      => $request->username,
-            'emailAddress'  => $request->emailAddress,
-            'firstName'     => $request->firstName,
-            'lastName'      => $request->lastName,
-            'password'      => $request->password,
-        ]);
+    public function getSubscriptionPeriod(Request $request)
+    {
+        $results = $this->publisher->getSubscriptionPeriod($request->id);
 
         return [
             'request'     => $results->request(),
@@ -67,9 +41,9 @@ class ReadersController extends Controller
         ];
     }
 
-    public function updateReader(Request $request, $readerId){
-
-        $results = $this->publisher->updateReader($readerId , $request->all());
+    public function createSubscriptionPeriod(Request $request){
+        logger($request->all());
+        $results = $this->publisher->createSubscriptionPeriod($request->all());
 
         return [
             'request'     => $results->request(),
@@ -78,9 +52,20 @@ class ReadersController extends Controller
         ];
     }
 
-    public function deleteReader($id){
+    public function updateSubscriptionPeriod(Request $request, $subscription_period_id){
 
-        $results = $this->publisher->deleteReader($id);
+        $results = $this->publisher->updateSubscriptionPeriod($subscription_period_id, $request->all());
+
+        return [
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
+        ];
+    }
+
+    public function deleteSubscriptionPeriod($subscription_period_id){
+
+        $results = $this->publisher->delete($subscription_period_id);
 
         return [
             'request'     => $results->request(),

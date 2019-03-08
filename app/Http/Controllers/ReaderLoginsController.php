@@ -21,14 +21,7 @@ class ReaderLoginsController extends Controller
 
     public function getReaderLogins(Request $request)
     {
-        $results = $this->publisher->getReaderLogins([
-            'reader'           => $request->reader,
-            'node'             => $request->node,
-            'loginDate_before' => $request->loginDate_before,
-            'loginDate_after'  => $request->loginDate_after,
-            'platform'         => $request->platform,
-            'email'            => $request->email,
-        ]);
+        $results = $this->publisher->getReaderLogins($request->all());
 
         return [
             'request'     => $results->request(),
