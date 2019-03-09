@@ -80,13 +80,8 @@
                 let copyText = document.getElementById(element);
                 copyText.select();
                 document.execCommand("copy");
+                this.toast('success', 'Copied to clipboard');
             },
-            tabActive : function(index){
-                return index == this.activeTabIndex;
-            },
-            switchtab : function(){
-                console.log()
-            }
         }
     }
 </script>

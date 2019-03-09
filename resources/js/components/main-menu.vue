@@ -62,16 +62,16 @@
             <li>
                 <p class="menu-label"><span class="icon"><i class="fa fa-globe"></i></span>SSO Tokens</p>
                 <ul>
-                    <router-link tag="li" to="/sso-tokens/any"><a href="">Any Token</a></router-link>
-                    <router-link tag="li" to="/sso-tokens/publication"><a href="">Publication Token</a></router-link>
-                    <router-link tag="li" to="/sso-tokens/edition"><a href="">Edition Token</a></router-link>
+                    <router-link tag="li" to="/sso/any"><a href="">Any Token</a></router-link>
+                    <router-link tag="li" to="/sso/publication"><a href="">Publication Token</a></router-link>
+                    <router-link tag="li" to="/sso/edition"><a href="">Edition Token</a></router-link>
                 </ul>
             </li>
             <li>
                 <p class="menu-label"><span class="icon"><i class="fa fa-question"></i></span>Other</p>
                 <ul>
-                    <router-link tag="li" to="/devices"><a href="">Remove Devices</a></router-link>
-                    <router-link tag="li" to="/authentication"><a href="">Auth Passwords</a></router-link>
+                    <router-link tag="li" to="/remove-devices"><a href="">Remove Devices</a></router-link>
+                    <router-link tag="li" to="/auth-passwords"><a href="">Auth Passwords</a></router-link>
                     <router-link tag="li" to="/targeted-notifications"><a href="">Notifications</a></router-link>
                 </ul>
             </li>

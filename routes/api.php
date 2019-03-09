@@ -30,4 +30,11 @@ Route::post('/subscription-periods', 'SubscriptionPeriodsController@createSubscr
 Route::put('/subscription-periods/{id}', 'SubscriptionPeriodsController@updateSubscriptionPeriod');
 Route::delete('/subscription-periods/{id}', 'SubscriptionPeriodsController@deleteSubscriptionPeriod');
 
+Route::post('/sso/any', 'SSOController@createAnyToken');
+Route::post('/sso/publication', 'SSOController@createPublicationToken');
+Route::post('/sso/edition', 'SSOController@createEditionToken');
+
+Route::post('/other/remove-devices', 'OtherController@removeDevices');
+Route::post('/other/auth-passwords', 'OtherController@authPasswords');
+
 Route::post('/targeted-notifications', 'TargetedNotificationsController@send');
