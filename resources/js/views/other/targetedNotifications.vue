@@ -1,5 +1,5 @@
 <template>
-    <main-layout>
+    <div>
         <div class="tabs single-use">
             <ul>
                 <li><a>Targeted Notifications</a></li>
@@ -68,7 +68,7 @@
                 </div>
             </form>
         </form>
-    </main-layout>
+    </div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <main-layout>
+    <div>
         <div class="tabs single-use">
             <ul>
                 <li><a>List Permissions</a></li>
@@ -37,7 +37,7 @@
                 </p>
             </div>
         </form>
-    </main-layout>
+    </div>
 </template>
 
 <script>

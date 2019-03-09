@@ -34,9 +34,6 @@ import store from './store';
 // Entry point component
 import App from './views/App'
 
-// Global components.
-Vue.component('main-layout', require('./views/layouts/mainLayout.vue').default);
-
 // Router
 const router = new VueRouter({
     mode: 'history',

@@ -1,5 +1,5 @@
 <template>
-    <main-layout>
+    <div>
         <div class="tabs single-use">
             <ul>
                 <li><a>Create Publication Token (Access Specific Publication)</a></li>
@@ -22,7 +22,7 @@
                 </p>
             </div>
         </form>
-    </main-layout>
+    </div>
 </template>
 
 <script>

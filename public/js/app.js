@@ -3212,6 +3212,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_top_nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/top-nav */ "./resources/js/components/top-nav.vue");
 /* harmony import */ var _components_settings_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/settings-modal */ "./resources/js/components/settings-modal.vue");
+/* harmony import */ var _components_main_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/main-menu */ "./resources/js/components/main-menu.vue");
+/* harmony import */ var _components_main_window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/main-window */ "./resources/js/components/main-window.vue");
+/* harmony import */ var _components_response_window__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/response-window */ "./resources/js/components/response-window.vue");
+/* harmony import */ var _components_footer_box__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/footer-box */ "./resources/js/components/footer-box.vue");
 //
 //
 //
@@ -3220,12 +3224,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     settingsModal: _components_settings_modal__WEBPACK_IMPORTED_MODULE_1__["default"],
-    topNav: _components_top_nav__WEBPACK_IMPORTED_MODULE_0__["default"]
+    topNav: _components_top_nav__WEBPACK_IMPORTED_MODULE_0__["default"],
+    mainMenu: _components_main_menu__WEBPACK_IMPORTED_MODULE_2__["default"],
+    mainWindow: _components_main_window__WEBPACK_IMPORTED_MODULE_3__["default"],
+    responseWindow: _components_response_window__WEBPACK_IMPORTED_MODULE_4__["default"],
+    footerBox: _components_footer_box__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 
@@ -3368,46 +3387,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.$store.commit('stopLoading');
       });
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layouts/mainLayout.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/layouts/mainLayout.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_main_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/main-menu */ "./resources/js/components/main-menu.vue");
-/* harmony import */ var _components_main_window__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/main-window */ "./resources/js/components/main-window.vue");
-/* harmony import */ var _components_response_window__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/response-window */ "./resources/js/components/response-window.vue");
-/* harmony import */ var _components_footer_box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/footer-box */ "./resources/js/components/footer-box.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'mainLayout',
-  components: {
-    mainMenu: _components_main_menu__WEBPACK_IMPORTED_MODULE_0__["default"],
-    mainWindow: _components_main_window__WEBPACK_IMPORTED_MODULE_1__["default"],
-    responseWindow: _components_response_window__WEBPACK_IMPORTED_MODULE_2__["default"],
-    footerBox: _components_footer_box__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
@@ -42376,7 +42355,20 @@ var render = function() {
       _vm._v(" "),
       _c("top-nav"),
       _vm._v(" "),
-      _c("router-view")
+      _c(
+        "div",
+        { staticClass: "columns" },
+        [
+          _c("main-menu"),
+          _vm._v(" "),
+          _c("main-window", [_c("router-view")], 1),
+          _vm._v(" "),
+          _c("response-window"),
+          _vm._v(" "),
+          _c("footer-box")
+        ],
+        1
+      )
     ],
     1
   )
@@ -42403,10 +42395,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Find Edition")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -42462,7 +42452,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Find Edition")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42484,10 +42483,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Editions")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -42614,44 +42611,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layouts/mainLayout.vue?vue&type=template&id=7c501448&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/layouts/mainLayout.vue?vue&type=template&id=7c501448& ***!
-  \****************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "columns" },
-    [
-      _c("main-menu"),
-      _vm._v(" "),
-      _c("main-window", [_vm._t("default")], 2),
-      _vm._v(" "),
-      _c("response-window"),
-      _vm._v(" "),
-      _c("footer-box")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Editions")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42673,10 +42642,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Find Reader Login")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -42732,7 +42699,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Find Reader Login")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42754,10 +42730,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Reader Logins")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -42934,7 +42908,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Reader Logins")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -42956,10 +42939,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("History")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     !_vm.history.length
       ? _c("div", { staticClass: "notification" }, [
@@ -42974,15 +42955,7 @@ var render = function() {
           "table",
           { staticClass: "table is-narrow is-fullwidth" },
           [
-            _c("thead", [
-              _c("tr", [
-                _c("th", [_vm._v("Time")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Request")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Status")])
-              ])
-            ]),
+            _vm._m(1),
             _vm._v(" "),
             _vm._l(_vm.history, function(item, index) {
               return _c("tbody", [
@@ -43026,7 +42999,30 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("History")])])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Time")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Request")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43048,10 +43044,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Authenticate Password")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43132,7 +43126,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Authenticate Password")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43154,10 +43157,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Remove Devices")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43212,7 +43213,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Remove Devices")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43234,10 +43244,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Targeted Notifications")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43506,7 +43514,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Targeted Notifications")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43528,10 +43545,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Create Permission")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43652,7 +43667,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Create Permission")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43674,10 +43698,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Delete Permission")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43733,7 +43755,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Delete Permission")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43755,10 +43786,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Permissions")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43813,7 +43842,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Permissions")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -43835,10 +43873,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Permissions")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -43991,7 +44027,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Permissions")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44013,10 +44058,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Update Permission")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44092,7 +44135,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Update Permission")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44114,10 +44166,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Find Publication")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44173,7 +44223,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Find Publication")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44195,10 +44254,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Publications")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44254,7 +44311,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Publications")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44276,10 +44342,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Create Reader")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44438,7 +44502,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Create Reader")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44460,10 +44533,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Delete Reader")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44519,7 +44590,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Delete Reader")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44541,10 +44621,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Find Reader")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44600,7 +44678,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Find Reader")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44622,10 +44709,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Readers")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -44811,7 +44896,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Readers")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44833,10 +44927,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Update Reader")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45022,7 +45114,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Update Reader")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45044,12 +45145,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [
-        _c("li", [_c("a", [_vm._v("Create Token (Access any edition)")])])
-      ])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45104,7 +45201,18 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [
+        _c("li", [_c("a", [_vm._v("Create Token (Access any edition)")])])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45126,14 +45234,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [
-        _c("li", [
-          _c("a", [_vm._v("Create Edition Token (Access Specific Edition)")])
-        ])
-      ])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45214,7 +45316,20 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [
+        _c("li", [
+          _c("a", [_vm._v("Create Edition Token (Access Specific Edition)")])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45236,16 +45351,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [
-        _c("li", [
-          _c("a", [
-            _vm._v("Create Publication Token (Access Specific Publication)")
-          ])
-        ])
-      ])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45326,7 +45433,22 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [
+        _c("li", [
+          _c("a", [
+            _vm._v("Create Publication Token (Access Specific Publication)")
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45348,10 +45470,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Create Subscription Period")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45472,7 +45592,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Create Subscription Period")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45494,10 +45623,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Delete Subscription Period")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45553,7 +45680,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Delete Subscription Period")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45575,10 +45711,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Find Subscription Period")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45634,7 +45768,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Find Subscription Period")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45656,10 +45799,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Subscription Periods")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45813,7 +45954,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Subscription Periods")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45835,10 +45985,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Update Subscription Period")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -45934,7 +46082,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Update Subscription Period")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -45956,10 +46113,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("Find Subscription")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -46015,7 +46170,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Find Subscription")])])])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -46037,10 +46201,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main-layout", [
-    _c("div", { staticClass: "tabs single-use" }, [
-      _c("ul", [_c("li", [_c("a", [_vm._v("List Subscriptions")])])])
-    ]),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
     _c(
       "form",
@@ -46255,9 +46417,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("label", { attrs: { for: "isDisabled" } }, [
-            _c("strong", [_vm._v("Disabled")])
-          ])
+          _vm._m(1)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -46277,7 +46437,24 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("List Subscriptions")])])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "isDisabled" } }, [
+      _c("strong", [_vm._v("Disabled")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -61723,9 +61900,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_filteredForm__WEBPACK_I
 
  // Entry point component
 
- // Global components.
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('main-layout', __webpack_require__(/*! ./views/layouts/mainLayout.vue */ "./resources/js/views/layouts/mainLayout.vue").default); // Router
+ // Router
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
@@ -62714,75 +62889,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_list_vue_vue_type_template_id_07d3c189___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_list_vue_vue_type_template_id_07d3c189___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/views/layouts/mainLayout.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/views/layouts/mainLayout.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mainLayout_vue_vue_type_template_id_7c501448___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mainLayout.vue?vue&type=template&id=7c501448& */ "./resources/js/views/layouts/mainLayout.vue?vue&type=template&id=7c501448&");
-/* harmony import */ var _mainLayout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mainLayout.vue?vue&type=script&lang=js& */ "./resources/js/views/layouts/mainLayout.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _mainLayout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _mainLayout_vue_vue_type_template_id_7c501448___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _mainLayout_vue_vue_type_template_id_7c501448___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/layouts/mainLayout.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/layouts/mainLayout.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/views/layouts/mainLayout.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainLayout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./mainLayout.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layouts/mainLayout.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mainLayout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/layouts/mainLayout.vue?vue&type=template&id=7c501448&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/views/layouts/mainLayout.vue?vue&type=template&id=7c501448& ***!
-  \**********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mainLayout_vue_vue_type_template_id_7c501448___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./mainLayout.vue?vue&type=template&id=7c501448& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layouts/mainLayout.vue?vue&type=template&id=7c501448&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mainLayout_vue_vue_type_template_id_7c501448___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_mainLayout_vue_vue_type_template_id_7c501448___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

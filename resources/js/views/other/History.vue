@@ -1,5 +1,5 @@
 <template>
-    <main-layout>
+    <div>
         <div class="tabs single-use">
             <ul>
                 <li><a>History</a></li>
@@ -25,7 +25,7 @@
             </tr>
             </tbody>
         </table>
-    </main-layout>
+    </div>
 </template>
 
 <script>

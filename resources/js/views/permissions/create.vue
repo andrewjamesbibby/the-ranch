@@ -1,5 +1,5 @@
 <template>
-    <main-layout>
+    <div>
         <div class="tabs single-use">
             <ul>
                 <li><a>Create Permission</a></li>
@@ -32,7 +32,7 @@
                 </p>
             </div>
         </form>
-    </main-layout>
+    </div>
 </template>
 <script>
     import Datepicker from 'vuejs-datepicker';

@@ -1,5 +1,5 @@
 <template>
-    <main-layout>
+    <div>
         <div class="tabs single-use">
             <ul>
                 <li><a>Update Reader</a></li>
@@ -43,7 +43,7 @@
                 </p>
             </div>
         </form>
-    </main-layout>
+    </div>
 </template>
 <script>
     export default {
