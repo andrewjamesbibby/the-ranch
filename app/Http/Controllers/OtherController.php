@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yudu\Publisher\Publisher;
 
 class OtherController extends Controller
 {
@@ -20,5 +21,27 @@ class OtherController extends Controller
         $this->publisher = new Publisher($key, $secret, [ 'debug' => true ]);
     }
 
+    public function removeDevices(Request $request) {
+
+        $results = $this->publisher->removeDevices($request->get('user'));
+
+        return [
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
+        ];
+    }
+
+    public function authPasswords(Request $request) {
+
+        $results = $this->publisher->authenticatePassword($request->get('id'), $request->get('password') );
+
+        return [
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
+        ];
+
+    }
 
 }
