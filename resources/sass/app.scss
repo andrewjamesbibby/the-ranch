@@ -48,7 +48,7 @@ html,body {
 
 #builder {
   border-right: 1px solid #DEDEDE;
-  padding: 4vh 20px;
+  padding: 4vh 20px 30vh 20px;
   height: 100vh;
   overflow-y: scroll;
 }
@@ -61,11 +61,11 @@ html,body {
 }
 
 #output .card {
-  height: 78vh;
+  height: 75vh;
 }
 
 #output .card pre {
-  height:68vh;
+  height:63vh;
 }
 
 .loading-overlay {

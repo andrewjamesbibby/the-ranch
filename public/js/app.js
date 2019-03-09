@@ -3847,14 +3847,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3877,27 +3869,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      var self = this;
-      self.$store.commit('startLoading');
-      axios.post('/api/targeted-notifications', {
-        publisherKey: self.$store.state.credentials.key,
-        publisherSecret: self.$store.state.credentials.secret,
-        nodeId: self.nodeId,
-        title: self.title,
-        message: self.message,
-        publisherSubscribers: self.publisherSubscribers,
-        thirdPartySubscribers: self.thirdPartySubscribers,
-        priority: self.priority
-      }).then(function (response) {
-        self.$store.commit('setResponse', response.data);
-      }).catch(function (error) {
-        console.log(error);
+      var _this = this;
 
+      this.$store.commit('startLoading');
+      axios.post('/api/targeted-notifications', {
+        nodeId: this.nodeId,
+        title: this.title,
+        message: this.message,
+        publisherSubscribers: this.publisherSubscribers.map(function (subscriber) {
+          return subscriber.token;
+        }),
+        thirdPartySubscribers: this.thirdPartySubscribers.map(function (subscriber) {
+          return subscriber.token;
+        }),
+        priority: this.priority
+      }).then(function (response) {
+        console.log(response);
+
+        _this.$store.commit('setResponse', response.data);
+      }).catch(function (error) {
         if (error.response) {
           alert(error.response.data.message);
         }
       }).then(function () {
-        self.$store.commit('stopLoading');
+        _this.$store.commit('stopLoading');
       });
     },
     addPublisherSubscriber: function addPublisherSubscriber() {
@@ -43239,286 +43234,279 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card mb-20" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("form", [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.nodeId,
-                      expression: "nodeId"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Node ID" },
-                  domProps: { value: _vm.nodeId },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.nodeId = $event.target.value
-                    }
+  return _c("main-layout", [
+    _c("div", { staticClass: "tabs single-use" }, [
+      _c("ul", [_c("li", [_c("a", [_vm._v("Targeted Notifications")])])])
+    ]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submit($event)
+          }
+        }
+      },
+      [
+        _c("form", [
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nodeId,
+                    expression: "nodeId"
                   }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.title,
-                      expression: "title"
+                ],
+                staticClass: "input",
+                attrs: { type: "text", placeholder: "Node ID" },
+                domProps: { value: _vm.nodeId },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Title" },
-                  domProps: { value: _vm.title },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.title = $event.target.value
-                    }
+                    _vm.nodeId = $event.target.value
                   }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.message,
-                      expression: "message"
-                    }
-                  ],
-                  staticClass: "input",
-                  attrs: { type: "text", placeholder: "Message" },
-                  domProps: { value: _vm.message },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.message = $event.target.value
-                    }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.title,
+                    expression: "title"
                   }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "mb-20" },
-              [
-                _c("label", { staticClass: "label is-unselectable" }, [
-                  _vm._v(
-                    "\n                            Publisher Subscribers\n                            "
-                  ),
-                  _c("span", { staticClass: "is-pulled-right" }, [
-                    _c("i", {
-                      staticClass: "fa fa-plus",
-                      on: { click: _vm.addPublisherSubscriber }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "is-pulled-right" }, [
-                    _c("i", {
-                      staticClass: "fa fa-minus",
-                      on: { click: _vm.removePublisherSubscriber }
-                    })
-                  ])
+                ],
+                staticClass: "input",
+                attrs: { type: "text", placeholder: "Title" },
+                domProps: { value: _vm.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.title = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.message,
+                    expression: "message"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text", placeholder: "Message" },
+                domProps: { value: _vm.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.message = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "mb-20" },
+            [
+              _c("label", { staticClass: "label is-unselectable" }, [
+                _vm._v(
+                  "\n                    Publisher Subscribers\n                    "
+                ),
+                _c("span", { staticClass: "is-pulled-right" }, [
+                  _c("i", {
+                    staticClass: "fa fa-plus",
+                    on: { click: _vm.addPublisherSubscriber }
+                  })
                 ]),
                 _vm._v(" "),
-                _vm._l(_vm.publisherSubscribers, function(subscriber) {
-                  return _c("div", { staticClass: "field" }, [
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: subscriber.token,
-                            expression: "subscriber.token"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Publisher Username"
-                        },
-                        domProps: { value: subscriber.token },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(subscriber, "token", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "mb-20" },
-              [
-                _c("label", { staticClass: "label is-unselectable" }, [
-                  _vm._v(
-                    "\n                            3rd Party Subscribers\n                            "
-                  ),
-                  _c("span", { staticClass: "is-pulled-right" }, [
-                    _c("i", {
-                      staticClass: "fa fa-plus",
-                      on: { click: _vm.addThirdPartySubscriber }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "is-pulled-right" }, [
-                    _c("i", {
-                      staticClass: "fa fa-minus",
-                      on: { click: _vm.removeThirdPartySubscriber }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.thirdPartySubscribers, function(subscriber) {
-                  return _c("div", { staticClass: "field" }, [
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: subscriber.token,
-                            expression: "subscriber.token"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Third Party Token"
-                        },
-                        domProps: { value: subscriber.token },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(subscriber, "token", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "control" }, [
-                _c("div", { staticClass: "select is-fullwidth" }, [
-                  _c(
-                    "select",
-                    {
+                _c("span", { staticClass: "is-pulled-right" }, [
+                  _c("i", {
+                    staticClass: "fa fa-minus",
+                    on: { click: _vm.removePublisherSubscriber }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.publisherSubscribers, function(subscriber) {
+                return _c("div", { staticClass: "field" }, [
+                  _c("div", { staticClass: "control" }, [
+                    _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.priority,
-                          expression: "priority"
+                          value: subscriber.token,
+                          expression: "subscriber.token"
                         }
                       ],
+                      staticClass: "input",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Publisher Username"
+                      },
+                      domProps: { value: subscriber.token },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.priority = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(subscriber, "token", $event.target.value)
                         }
                       }
-                    },
-                    [
-                      _c(
-                        "option",
-                        { attrs: { value: "", disabled: "", selected: "" } },
-                        [_vm._v("Priority")]
-                      ),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "DEFAULT" } }, [
-                        _vm._v("Default")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "HIGH" } }, [
-                        _vm._v("High")
-                      ])
-                    ]
-                  )
+                    })
+                  ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("p", { staticClass: "control" }, [
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "mb-20" },
+            [
+              _c("label", { staticClass: "label is-unselectable" }, [
+                _vm._v(
+                  "\n                    3rd Party Subscribers\n                    "
+                ),
+                _c("span", { staticClass: "is-pulled-right" }, [
+                  _c("i", {
+                    staticClass: "fa fa-plus",
+                    on: { click: _vm.addThirdPartySubscriber }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "is-pulled-right" }, [
+                  _c("i", {
+                    staticClass: "fa fa-minus",
+                    on: { click: _vm.removeThirdPartySubscriber }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.thirdPartySubscribers, function(subscriber) {
+                return _c("div", { staticClass: "field" }, [
+                  _c("div", { staticClass: "control" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: subscriber.token,
+                          expression: "subscriber.token"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text", placeholder: "Third Party Token" },
+                      domProps: { value: subscriber.token },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(subscriber, "token", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("div", { staticClass: "select is-fullwidth" }, [
                 _c(
-                  "a",
+                  "select",
                   {
-                    staticClass: "button is-primary",
-                    class: { "is-loading": _vm.loading },
-                    on: { click: _vm.submit }
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.priority,
+                        expression: "priority"
+                      }
+                    ],
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.priority = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
                   },
-                  [_vm._v(" Submit ")]
+                  [
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", selected: "" } },
+                      [_vm._v("Priority")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "DEFAULT" } }, [
+                      _vm._v("Default")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "HIGH" } }, [_vm._v("High")])
+                  ]
                 )
               ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("p", { staticClass: "control" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "button is-primary",
+                  class: { "is-loading": _vm.loading },
+                  on: { click: _vm.submit }
+                },
+                [_vm._v("\n                        Submit ")]
+              )
+            ])
           ])
         ])
-      ])
-    ])
+      ]
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "card-header" }, [
-      _c("p", { staticClass: "card-header-title" }, [
-        _vm._v("Send Targeted Notification")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -62486,7 +62474,6 @@ var store = new Vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     history: [],
     activeResponseIndex: 0
   },
-  getters: {},
   mutations: {
     startLoading: function startLoading() {
       this.state.loading = true;

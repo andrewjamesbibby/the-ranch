@@ -11,29 +11,31 @@ class TargetedNotificationsController extends Controller
 
     public function __construct(Request $request)
     {
-        if(!$request->publisherKey || !$request->publisherSecret){
+        $key = $request->headers->get('Publisher-Key');
+        $secret = $request->headers->get('Publisher-Secret');
+
+        if(! $key || ! $secret){
             abort(403, 'Missing credentials - Publisher Key AND Publisher Secret must both be specified');
         }
 
-        $this->publisher = new Publisher($request->publisherKey, $request->publisherSecret, [ 'debug' => true ]);
+        $this->publisher = new Publisher($key, $secret, [ 'debug' => true ]);
     }
-
 
     public function send(Request $request){
 
         $results = $this->publisher->sendTargetedNotification(
-            $request->nodeId,
-            $request->title,
-            $request->message,
-            $request->publisherSubscribers,
-            $request->thirdPartySubscribers,
-            $request->priority
+            $request->get('nodeId'),
+            $request->get('title'),
+            $request->get('message'),
+            $request->get('publisherSubscribers'),
+            $request->get('thirdPartySubscribers'),
+            $request->get('priority')
         );
 
         return [
-            'raw'        => $results->raw(),
-            'statusCode' => $results->statusCode(),
-            'body'       => $results->xmlString(),
+            'request'     => $results->request(),
+            'statusCode'  => $results->statusCode(),
+            'body'        => $results->xmlString(),
         ];
     }
 }

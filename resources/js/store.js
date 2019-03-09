@@ -16,8 +16,6 @@ const store = new Vuex.Store({
         history : [],
         activeResponseIndex : 0,
     },
-    getters: {
-    },
     mutations: {
         startLoading() {
             this.state.loading = true;
