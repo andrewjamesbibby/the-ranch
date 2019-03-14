@@ -2915,6 +2915,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quick-menu.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/quick-menu.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "quick-menu"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/response-window.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/response-window.vue?vue&type=script&lang=js& ***!
@@ -3130,6 +3164,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     openCredentialsModal: function openCredentialsModal() {
@@ -3216,6 +3251,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_main_window__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/main-window */ "./resources/js/components/main-window.vue");
 /* harmony import */ var _components_response_window__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/response-window */ "./resources/js/components/response-window.vue");
 /* harmony import */ var _components_footer_box__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/footer-box */ "./resources/js/components/footer-box.vue");
+/* harmony import */ var _components_quick_menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/quick-menu */ "./resources/js/components/quick-menu.vue");
+/* harmony import */ var bulma_extensions_bulma_quickview_dist_js_bulma_quickview_min_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! bulma-extensions/bulma-quickview/dist/js/bulma-quickview.min.js */ "./node_modules/bulma-extensions/bulma-quickview/dist/js/bulma-quickview.min.js");
+/* harmony import */ var bulma_extensions_bulma_quickview_dist_js_bulma_quickview_min_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(bulma_extensions_bulma_quickview_dist_js_bulma_quickview_min_js__WEBPACK_IMPORTED_MODULE_7__);
 //
 //
 //
@@ -3231,6 +3269,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
+
 
 
 
@@ -3239,12 +3280,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
+    QuickMenu: _components_quick_menu__WEBPACK_IMPORTED_MODULE_6__["default"],
     settingsModal: _components_settings_modal__WEBPACK_IMPORTED_MODULE_1__["default"],
     topNav: _components_top_nav__WEBPACK_IMPORTED_MODULE_0__["default"],
     mainMenu: _components_main_menu__WEBPACK_IMPORTED_MODULE_2__["default"],
     mainWindow: _components_main_window__WEBPACK_IMPORTED_MODULE_3__["default"],
     responseWindow: _components_response_window__WEBPACK_IMPORTED_MODULE_4__["default"],
     footerBox: _components_footer_box__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  mounted: function mounted() {
+    bulma_extensions_bulma_quickview_dist_js_bulma_quickview_min_js__WEBPACK_IMPORTED_MODULE_7___default.a.attach();
   }
 });
 
@@ -5441,6 +5486,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/bulma-extensions/bulma-quickview/dist/js/bulma-quickview.min.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/bulma-extensions/bulma-quickview/dist/js/bulma-quickview.min.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t():undefined}("undefined"!=typeof self?self:this,function(){return function(n){var i={};function r(e){if(i[e])return i[e].exports;var t=i[e]={i:e,l:!1,exports:{}};return n[e].call(t.exports,t,t.exports,r),t.l=!0,t.exports}return r.m=n,r.c=i,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:n})},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=0)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=n(1),o=n(2),s=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e},a=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();var u=Symbol("onQuickviewShowClick"),l=Symbol("onQuickviewDismissClick"),r=function(e){function r(e){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,r);var n=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(r.__proto__||Object.getPrototypeOf(r)).call(this));if(n.element="string"==typeof e?document.querySelector(e):e,!n.element)throw new Error("An invalid selector or non-DOM node has been provided.");return n._clickEvents=["click"],n.options=s({},o.a,t),n[u]=n[u].bind(n),n[l]=n[l].bind(n),n.init(),n}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(r,i["a"]),a(r,[{key:"init",value:function(){this.quickview=document.getElementById(this.element.dataset.target),this.dismissElements=document.querySelectorAll('[data-dismiss="quickview"]'),this._bindEvents(),this.emit("quickview:ready",{element:this.element,quickview:this.quickview})}},{key:"_bindEvents",value:function(){var n=this;this._clickEvents.forEach(function(e){n.element.addEventListener(e,n[u],!1)}),[].forEach.call(this.dismissElements,function(t){n._clickEvents.forEach(function(e){t.addEventListener(e,n[l],!1)})})}},{key:u,value:function(e){this.quickview.classList.add("is-active"),this.emit("quickview:show",{element:this.element,quickview:this.quickview})}},{key:l,value:function(e){this.quickview.classList.remove("is-active"),this.emit("quickview:hide",{element:this.element,quickview:this.quickview})}}],[{key:"attach",value:function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:'[data-show="quickview"]',t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},n=new Array,i=document.querySelectorAll(e);return[].forEach.call(i,function(e){setTimeout(function(){n.push(new r(e,t))},100)}),n}}]),r}();t.default=r},function(e,t,n){"use strict";var i=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();var r=function(){function t(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:[];!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),this._listeners=new Map(e),this._middlewares=new Map}return i(t,[{key:"listenerCount",value:function(e){return this._listeners.has(e)?this._listeners.get(e).length:0}},{key:"removeListeners",value:function(){var t=this,e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null,n=1<arguments.length&&void 0!==arguments[1]&&arguments[1];null!==e?Array.isArray(e)?name.forEach(function(e){return t.removeListeners(e,n)}):(this._listeners.delete(e),n&&this.removeMiddleware(e)):this._listeners=new Map}},{key:"middleware",value:function(e,t){var n=this;Array.isArray(e)?name.forEach(function(e){return n.middleware(e,t)}):(Array.isArray(this._middlewares.get(e))||this._middlewares.set(e,[]),this._middlewares.get(e).push(t))}},{key:"removeMiddleware",value:function(){var t=this,e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null;null!==e?Array.isArray(e)?name.forEach(function(e){return t.removeMiddleware(e)}):this._middlewares.delete(e):this._middlewares=new Map}},{key:"on",value:function(e,t){var n=this,i=2<arguments.length&&void 0!==arguments[2]&&arguments[2];if(Array.isArray(e))e.forEach(function(e){return n.on(e,t)});else{var r=(e=e.toString()).split(/,|, | /);1<r.length?r.forEach(function(e){return n.on(e,t)}):(Array.isArray(this._listeners.get(e))||this._listeners.set(e,[]),this._listeners.get(e).push({once:i,callback:t}))}}},{key:"once",value:function(e,t){this.on(e,t,!0)}},{key:"emit",value:function(n,i){var r=this,o=2<arguments.length&&void 0!==arguments[2]&&arguments[2];n=n.toString();var s=this._listeners.get(n),a=null,u=0,l=o;if(Array.isArray(s))for(s.forEach(function(e,t){o||(a=r._middlewares.get(n),Array.isArray(a)?(a.forEach(function(e){e(i,function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null;null!==e&&(i=e),u++},n)}),u>=a.length&&(l=!0)):l=!0),l&&(e.once&&(s[t]=null),e.callback(i))});-1!==s.indexOf(null);)s.splice(s.indexOf(null),1)}}]),t}();t.a=r},function(e,t,n){"use strict";t.a={}}]).default});
 
 /***/ }),
 
@@ -41522,309 +41578,251 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "menu column is-2", attrs: { id: "main-nav" } },
-    [
-      _c("ul", { staticClass: "menu-list" }, [
-        _c("li", [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c("router-link", { attrs: { tag: "li", to: "/readers/list" } }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("List Readers")])
-              ]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { tag: "li", to: "/readers/find" } }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Find Reader")])
-              ]),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/readers/create" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Create Reader")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/readers/update" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Update Reader")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/readers/delete" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Delete")])]
-              )
-            ],
-            1
-          )
-        ]),
+  return _c("div", { staticClass: "menu", attrs: { id: "main-nav" } }, [
+    _c("ul", { staticClass: "menu-list" }, [
+      _c("li", [
+        _vm._m(0),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/editions/list" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("List Editions")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/editions/find" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Find Edition")])]
-              )
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c("router-link", { attrs: { tag: "li", to: "/readers/list" } }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("List Readers")])
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/readers/find" } }, [
+              _c("a", { attrs: { href: "#" } }, [_vm._v("Find Reader")])
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/readers/create" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Create Reader")])
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/readers/update" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Update Reader")])
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/readers/delete" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Delete")])
+            ])
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(1),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(2),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/permissions/list" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("List Permissions")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/permissions/find" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Find Permission")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/permissions/create" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Create Permission")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/permissions/update" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Update Permission")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/permissions/delete" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Delete Permission")
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c("router-link", { attrs: { tag: "li", to: "/editions/list" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("List Editions")])
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/editions/find" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Find Edition")])
+            ])
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(2),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(3),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/reader-logins/list" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("List Reader Logins")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/reader-logins/find" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Find Reader Login")
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/permissions/list" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("List Permissions")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/permissions/find" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Find Permission")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/permissions/create" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Create Permission")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/permissions/update" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Update Permission")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/permissions/delete" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Delete Permission")])]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(3),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(4),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/publications/list" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("List Publications")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/publications/find" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Find Publications")
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/reader-logins/list" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("List Reader Logins")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/reader-logins/find" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Find Reader Login")])]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(4),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(5),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscriptions/list" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("List Subscriptions")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscriptions/find" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Find Subscription")
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/publications/list" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("List Publications")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/publications/find" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Find Publications")])]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(5),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(6),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscription-periods/list" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("List Periods")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscription-periods/find" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Find Period")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscription-periods/create" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Create Period")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscription-periods/update" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Update Period")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/subscription-periods/delete" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Delete Period")])]
-              )
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscriptions/list" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("List Subscriptions")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscriptions/find" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Find Subscription")])]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(6),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(7),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c("router-link", { attrs: { tag: "li", to: "/sso/any" } }, [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Any Token")])
-              ]),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/sso/publication" } },
-                [
-                  _c("a", { attrs: { href: "" } }, [
-                    _vm._v("Publication Token")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("router-link", { attrs: { tag: "li", to: "/sso/edition" } }, [
-                _c("a", { attrs: { href: "" } }, [_vm._v("Edition Token")])
-              ])
-            ],
-            1
-          )
-        ]),
+        _c(
+          "ul",
+          [
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscription-periods/list" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("List Periods")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscription-periods/find" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Find Period")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscription-periods/create" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Create Period")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscription-periods/update" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Update Period")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/subscription-periods/delete" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Delete Period")])]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(7),
         _vm._v(" "),
-        _c("li", [
-          _vm._m(8),
-          _vm._v(" "),
-          _c(
-            "ul",
-            [
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/remove-devices" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Remove Devices")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/auth-passwords" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Auth Passwords")])]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { attrs: { tag: "li", to: "/targeted-notifications" } },
-                [_c("a", { attrs: { href: "" } }, [_vm._v("Notifications")])]
-              )
-            ],
-            1
-          )
-        ])
+        _c(
+          "ul",
+          [
+            _c("router-link", { attrs: { tag: "li", to: "/sso/any" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Any Token")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/sso/publication" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Publication Token")])]
+            ),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/sso/edition" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Edition Token")])
+            ])
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _vm._m(8),
+        _vm._v(" "),
+        _c(
+          "ul",
+          [
+            _c("router-link", { attrs: { tag: "li", to: "/remove-devices" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Remove Devices")])
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { tag: "li", to: "/auth-passwords" } }, [
+              _c("a", { attrs: { href: "" } }, [_vm._v("Auth Passwords")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { tag: "li", to: "/targeted-notifications" } },
+              [_c("a", { attrs: { href: "" } }, [_vm._v("Notifications")])]
+            )
+          ],
+          1
+        )
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -41948,14 +41946,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "column is-4 is-fullheight", attrs: { id: "builder" } },
-    [_vm._t("default")],
-    2
-  )
+  return _c("div", { attrs: { id: "builder" } }, [_vm._t("default")], 2)
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "quickview", attrs: { id: "quickviewDefault" } },
+      [
+        _c("header", { staticClass: "quickview-header" }, [
+          _c("p", { staticClass: "title" }, [_vm._v("Quickview title")]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "delete",
+            attrs: { "data-dismiss": "quickview" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "quickview-body" }, [
+          _c("div", { staticClass: "quickview-block" })
+        ]),
+        _vm._v(" "),
+        _c("footer", { staticClass: "quickview-footer" })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -41977,7 +42020,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "column is-6", attrs: { id: "output" } }, [
+  return _c("div", { attrs: { id: "output" } }, [
     _c("div", { staticClass: "tabs" }, [
       _c("ul", [
         _c(
@@ -42259,36 +42302,52 @@ var render = function() {
       _vm._m(0)
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "navbar-end" }, [
-      _c("div", { staticClass: "navbar-item" }, [
-        _c(
-          "div",
-          { staticClass: "buttons" },
-          [
-            _c(
-              "router-link",
-              { staticClass: "button is-light", attrs: { to: "/history" } },
-              [
-                _c("span", [
-                  _c("i", { staticClass: "fa fa-history" }),
-                  _vm._v(" History ")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "button is-light",
-                on: { click: _vm.openCredentialsModal }
-              },
-              [_vm._m(1)]
-            )
-          ],
-          1
-        )
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "navbar-end is-hidden-tablet-only is-hidden-mobile" },
+      [
+        _c("div", { staticClass: "navbar-item" }, [
+          _c(
+            "div",
+            { staticClass: "buttons" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "button is-light", attrs: { to: "/history" } },
+                [
+                  _c("span", [
+                    _c("i", { staticClass: "fa fa-history" }),
+                    _vm._v(" History ")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "button is-light",
+                  on: { click: _vm.openCredentialsModal }
+                },
+                [_vm._m(1)]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: {
+                "data-show": "quickview",
+                "data-target": "quickviewDefault"
+              }
+            },
+            [_vm._v("Show quickview")]
+          )
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -42302,8 +42361,8 @@ var staticRenderFns = [
         staticClass: "navbar-burger burger",
         attrs: {
           role: "button",
-          "aria-label": "menu",
-          "aria-expanded": "false"
+          "data-show": "quickview",
+          "data-target": "quickviewDefault"
         }
       },
       [
@@ -42359,11 +42418,23 @@ var render = function() {
         "div",
         { staticClass: "columns" },
         [
-          _c("main-menu"),
+          _c("quick-menu"),
           _vm._v(" "),
-          _c("main-window", [_c("router-view")], 1),
+          _c("main-menu", {
+            staticClass:
+              "column is-hidden-mobile is-hidden-tablet-only is-3-desktop is-2-widescreen"
+          }),
           _vm._v(" "),
-          _c("response-window"),
+          _c(
+            "main-window",
+            { staticClass: "column is-6-tablet is-4-desktop is-4-widescreen" },
+            [_c("router-view")],
+            1
+          ),
+          _vm._v(" "),
+          _c("response-window", {
+            staticClass: "column is-6-tablet is-5-desktop is-6-widescreen"
+          }),
           _vm._v(" "),
           _c("footer-box")
         ],
@@ -62241,6 +62312,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_main_window_vue_vue_type_template_id_8a6f20ee___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_main_window_vue_vue_type_template_id_8a6f20ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/quick-menu.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/quick-menu.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _quick_menu_vue_vue_type_template_id_3f2de64a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true& */ "./resources/js/components/quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true&");
+/* harmony import */ var _quick_menu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./quick-menu.vue?vue&type=script&lang=js& */ "./resources/js/components/quick-menu.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _quick_menu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _quick_menu_vue_vue_type_template_id_3f2de64a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _quick_menu_vue_vue_type_template_id_3f2de64a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "3f2de64a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/quick-menu.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/quick-menu.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/quick-menu.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_quick_menu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./quick-menu.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quick-menu.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_quick_menu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_quick_menu_vue_vue_type_template_id_3f2de64a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/quick-menu.vue?vue&type=template&id=3f2de64a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_quick_menu_vue_vue_type_template_id_3f2de64a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_quick_menu_vue_vue_type_template_id_3f2de64a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

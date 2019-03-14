@@ -1,24 +1,28 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Bulma
 @import '~bulma/bulma';
 @import '~bulma-extensions/bulma-switch/dist/css/bulma-switch.sass';
 @import '~bulma-extensions/bulma-divider/dist/css/bulma-divider.sass';
+@import '~bulma-extensions/bulma-quickview/dist/css/bulma-quickview.sass';
 
 // Partials
 @import './partials/toast';
 @import './partials/spacers';
 
 // Main
-html,body {
+html, body {
   font-family: 'Open Sans', serif;
   font-size: 14px;
   line-height: 1.5;
   height: 100%;
   background-color: #fff;
-  overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+    html, body {
+        overflow : hidden;
+    }
 }
 
 ::-webkit-scrollbar {
@@ -26,7 +30,7 @@ html,body {
 }
 
 #main-nav {
-  display:block;
+  display: block;
   background-color: #F9F9F9;
   border-right: 1px solid #DEDEDE;
   padding: 30px 30px 120px 30px;
@@ -49,12 +53,17 @@ html,body {
 #builder {
   border-right: 1px solid #DEDEDE;
   padding: 4vh 20px 30vh 20px;
-  height: 100vh;
   overflow-y: scroll;
 }
 
+@media screen and (max-width: 768px) {
+  #builder {
+      padding: 4vh 20px 10vh 20px;
+  }
+}
+
 #output {
-  display:block;
+  display: block;
   background-color: #fff;
   padding: 4vh 25px;
   height: 100vh;
@@ -65,14 +74,14 @@ html,body {
 }
 
 #output .card pre {
-  height:63vh;
+  height: 63vh;
 }
 
 .loading-overlay {
   position: absolute;
-  width:100%;
+  width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   top: 0;
   left: 0;
   z-index: 1001;

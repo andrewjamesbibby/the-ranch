@@ -1,5 +1,5 @@
 <template>
-    <div id="output" class="column is-6">
+    <div id="output">
 
         <div class="tabs">
             <ul>

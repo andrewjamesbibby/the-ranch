@@ -4,14 +4,14 @@
             <p class="navbar-item" href="/">
                 <img :src="'/images/neverland.gif'" height="28"> &nbsp;&nbsp; <strong> NEVERLAND </strong> | YUDU REST API PLAYGROUND
             </p>
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false">
+            <a role="button" class="navbar-burger burger" data-show="quickview" data-target="quickviewDefault">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
 
-        <div class="navbar-end">
+        <div class="navbar-end is-hidden-tablet-only is-hidden-mobile">
             <div class="navbar-item">
                 <div class="buttons">
                     <router-link class="button is-light" to="/history">
@@ -21,6 +21,7 @@
                         <span><i class="fa fa-cog"></i> Settings </span>
                     </a>
                 </div>
+                <button class="button is-primary" data-show="quickview" data-target="quickviewDefault">Show quickview</button>
             </div>
         </div>
     </nav>
@@ -29,9 +30,9 @@
 <script>
     export default {
         methods : {
-            openCredentialsModal: function() {
+            openCredentialsModal() {
                 this.$store.commit('toggleCredentialsModal', true);
-            },
+            }
         }
     }
 </script>

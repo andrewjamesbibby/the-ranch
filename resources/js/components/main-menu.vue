@@ -1,5 +1,5 @@
 <template>
-    <div id="main-nav" class="menu column is-2">
+    <div id="main-nav" class="menu">
         <ul class="menu-list">
             <li>
                 <p class="menu-label"><span class="icon"><i class="fa fa-book-reader"></i></span>Readers</p>

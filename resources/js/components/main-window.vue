@@ -1,5 +1,5 @@
 <template>
-    <div id ="builder" class="column is-4 is-fullheight">
+    <div id ="builder">
         <slot></slot>
     </div>
 </template>
