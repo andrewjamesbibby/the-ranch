@@ -2,9 +2,9 @@
     <footer id="footer" class="footer">
         <div class="container">
             <div class="content has-text-centered">
-                <span class="is-unselectable"><strong class="glow">NEVERLAND</strong> by ajb </span>
+                <span class="is-unselectable"><strong class="glow">THE RANCH</strong> by ajb </span>
                 <span>
-                    <a target="_blank" href="https://github.com/andrewjamesbibby/neverland-rest-api-playground">
+                    <a target="_blank" href="https://github.com/andrewjamesbibby/the-ranch">
                         <i class="fab fa-github-square fa-2x"></i>
                     </a>
                 </span>
