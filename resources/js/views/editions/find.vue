@@ -27,9 +27,6 @@
                 editionId : null,
             }
         },
-        mounted : function(){
-
-        },
         methods : {
             submit: function() {
                 this.$store.commit('startLoading');

@@ -2,6 +2,13 @@
     <div id="main-nav" class="menu">
         <ul class="menu-list">
             <li>
+                <ul>
+                    <router-link exact tag="li" to="/"><a href="#">Home</a></router-link>
+                    <router-link tag="li" to="/credentials"><a href="#">API Credentials</a></router-link>
+                    <router-link tag="li" to="/history"><a href="#">History</a></router-link>
+                </ul>
+            </li>
+            <li>
                 <p class="menu-label"><span class="icon"><i class="fa fa-book-reader"></i></span>Readers</p>
                 <ul>
                     <router-link tag="li" to="/readers/list"><a href="#">List Readers</a></router-link>

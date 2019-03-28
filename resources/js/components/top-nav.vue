@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar has-shadow">
         <div class="navbar-brand">
-            <p class="navbar-item" href="/">
+            <router-link class="navbar-item" to="/">
                 <img :src="'/images/neverland.gif'" height="28"> &nbsp;&nbsp; <strong> THE RANCH </strong> &nbsp;| A YUDU REST API PLAYGROUND
-            </p>
+            </router-link>
             <a role="button" class="navbar-burger burger" data-show="quickview" data-target="quickviewDefault">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -18,7 +18,7 @@
                         <span><i class="fa fa-history"></i> History </span>
                     </router-link>
                     <a class="button is-light" @click="openCredentialsModal">
-                        <span><i class="fa fa-cog"></i> Settings </span>
+                        <span><i class="fa fa-cog"></i> Credentials </span>
                     </a>
                 </div>
             </div>

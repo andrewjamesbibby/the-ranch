@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/verify', 'OtherController@verifyCredentials');
+
 Route::get('/readers', 'ReadersController@getReaders');
 Route::get('/readers/{id}', 'ReadersController@getReader');
 Route::post('/readers', 'ReadersController@createReader');

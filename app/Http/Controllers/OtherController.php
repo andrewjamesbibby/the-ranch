@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mockery\Exception;
 use Yudu\Publisher\Publisher;
 
 class OtherController extends Controller
@@ -19,6 +20,21 @@ class OtherController extends Controller
         }
 
         $this->publisher = new Publisher($key, $secret, [ 'debug' => true ]);
+    }
+
+    public function verifyCredentials(Request $request) {
+
+        $results = $this->publisher->getLinks();
+
+        if($results->statusCode() == 200){
+            return [ "verified" => true ];
+        }
+
+        if($results->statusCode() == 401){
+            return [ "false" => false ];
+        }
+
+        throw new Exception('Credentials could not be verified');
     }
 
     public function removeDevices(Request $request) {

@@ -42,12 +42,15 @@ const router = new VueRouter({
     routes: [
 
         // Readers
-        { path: '/', redirect: '/readers/list' },
+        { path: '/', component: require('./views/home.vue').default },
         { path: '/readers/list', component: require('./views/readers/list.vue').default },
         { path: '/readers/find', component: require('./views/readers/find.vue').default },
         { path: '/readers/create', component: require('./views/readers/create.vue').default },
         { path: '/readers/update', component: require('./views/readers/update.vue').default },
         { path: '/readers/delete', component: require('./views/readers/delete.vue').default },
+
+        // Settings
+        { path: '/credentials', component: require('./views/settings/credentials.vue').default },
 
         // Editions
         { path: '/editions/list', component: require('./views/editions/list.vue').default },
